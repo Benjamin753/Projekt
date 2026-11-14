@@ -115,6 +115,8 @@ func run() -> void:
 			game.start_round()
 	await settle()
 	check(game.phase == game.Phase.OVER and not shop.shop_content.visible, "Game over shows the run summary instead of purchases.")
+	check(shop.get_node("%ResultScore").text == str(game.score), "The run summary shows the final score.")
+	check(shop.get_node("%ResultHighScore").text.ends_with(str(game.high_score)), "The run summary carries the high score.")
 	check(not game.buy_extra_life(), "Extra lives cannot be bought after game over.")
 	await click(shop.continue_button)
 	check(game.phase == game.Phase.START and game.credit == 0 and game.pin_levels.all(func(level): return level == 1), "A new run resets credit and every pin.")

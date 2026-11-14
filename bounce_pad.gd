@@ -22,10 +22,14 @@ func bounce_velocity(velocity: Vector2, normal: Vector2) -> Vector2:
 		return velocity
 	var outward := velocity.dot(normal)
 	var boost := minf(kick_speed, maxf(0.0, maximum_outward_speed - outward))
-	flash = 1.0
-	activated.emit()
+	if boost > 0.0:
+		flash = 1.0
+		activated.emit()
 	return velocity + normal * boost
 
 func _process(delta: float) -> void:
-	flash = maxf(0.0, flash - delta * 6.0)
-	modulate = Color.WHITE.lerp(Color(1.7, 1.7, 1.7), flash)
+	if flash <= 0.0:
+		return
+	flash = maxf(0.0, flash - delta * 5.5)
+	$Face.self_modulate = Color.WHITE.lerp(Color(1.75, 1.55, 1.25), flash)
+	$Glow.self_modulate.a = lerpf(1.0, 2.8, flash)

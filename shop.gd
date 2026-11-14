@@ -57,27 +57,32 @@ func pin_effect(index: int, level: int) -> String:
 
 func refresh() -> void:
 	var over: bool = game.phase == game.Phase.OVER
-	%Title.text = "Run beendet" if over else "Mach mehr aus deinem Run."
-	%Eyebrow.text = "STEEL BALLZ RUN / ERGEBNIS" if over else "STEEL BALLZ RUN / WERKSTATT"
+	%Title.text = "Run beendet" if over else "Werkstatt"
+	%Eyebrow.text = "STEEL BALLZ RUN"
 	%Wallet.text = "Guthaben  %s" % game.credit
+	%Wallet.get_parent().visible = not over
+	%RunScore.get_parent().visible = not over
 	%RunScore.text = "Aktueller Run  %s" % game.score
 	%HighScore.text = "Highscore  %s" % game.high_score
-	%Subtitle.text = "Jeder Treffer zählt. Auf zum nächsten Versuch." if over else "%s Kugeln übrig · %s Ausrüstungsangebote" % [game.balls_left, game.offers.size()]
+	%Subtitle.text = "%s Kugeln gespielt" % (3 + game.extra_lives_bought) if over else "%s Kugeln übrig · %s Ausrüstungsangebote" % [game.balls_left, game.offers.size()]
 	%Tabs.visible = not over
 	shop_content.visible = not over
 	buy_button.visible = not over
 	%LifeCard.visible = not over
 	%RunSummary.visible = over
-	%RunSummary.text = "%s\nPUNKTE IN DIESEM RUN\n\nHighscore  %s\n\nInvestiert  %s · Übrig  %s" % [game.score, game.high_score, game.score - game.credit, game.credit]
 	continue_button.text = "Neuen Run starten  →" if over else "Weiter zur nächsten Kugel  →"
-	%Footnote.text = "Neuer Run: Pins auf Level 1, Upgrades zurückgesetzt.\nDein Highscore bleibt erhalten." if over else "Upgrades gelten für diesen Run."
+	%Footnote.text = "Dein Highscore bleibt erhalten." if over else "Upgrades gelten für diesen Run."
 	if over:
+		%ResultScore.text = str(game.score)
+		%ResultHighScore.text = "Highscore  %s" % game.high_score
+		%ResultCredits.text = "Investiert  %s   ·   Übrig  %s" % [game.score - game.credit, game.credit]
 		%Feedback.text = ""
 		return
-	%LifeStatus.text = "%s / %s gekauft · pro Run" % [game.extra_lives_bought, game.MAX_EXTRA_LIVES]
-	extra_life_button.disabled = game.extra_lives_bought >= game.MAX_EXTRA_LIVES or game.credit < game.EXTRA_LIFE_COST
-	extra_life_button.text = "Limit erreicht" if game.extra_lives_bought >= game.MAX_EXTRA_LIVES else "+1 Kugel · %s" % game.EXTRA_LIFE_COST
-	extra_life_button.tooltip_text = "Noch %s Guthaben nötig" % maxi(0, game.EXTRA_LIFE_COST - game.credit) if game.credit < game.EXTRA_LIFE_COST else "Eine zusätzliche Kugel für diesen Run"
+	var life_count := "%s / %s" % [game.extra_lives_bought, game.MAX_EXTRA_LIVES]
+	var life_limit: bool = game.extra_lives_bought >= game.MAX_EXTRA_LIVES
+	extra_life_button.disabled = life_limit or game.credit < game.EXTRA_LIFE_COST
+	extra_life_button.text = "Maximum erreicht · %s" % life_count if life_limit else "+1 Kugel · %s (%s)" % [game.EXTRA_LIFE_COST, life_count]
+	extra_life_button.tooltip_text = "Maximal drei Zusatzkugeln pro Run" if life_limit else "Preis: %s Guthaben" % game.EXTRA_LIFE_COST
 	for index in category_buttons.size():
 		category_buttons[index].set_pressed_no_signal(category == index)
 	%PinPicker.visible = category == 0
@@ -85,7 +90,7 @@ func refresh() -> void:
 	for index in pin_buttons.size():
 		var pin_level: int = game.pin_levels[index]
 		pin_buttons[index].text = "L%s" % pin_level
-		pin_buttons[index].get_node("Skin").set_skin(game.pin_texture(index, pin_level), game.pin_points(index, pin_level))
+		pin_buttons[index].get_node("Skin").set_skin(game.pin_texture(index, pin_level), game.pin_points(index, pin_level), game.PIN_ACCENTS[index])
 		pin_buttons[index].tooltip_text = "%s · %s Punkte" % [game.PIN_NAMES[index], game.pin_points(index, pin_level)]
 		pin_buttons[index].set_pressed_no_signal(selected_pin == index)
 	var level: int
@@ -98,12 +103,12 @@ func refresh() -> void:
 		level = game.pin_levels[selected_pin] - 1
 		prices = game.pin_prices(selected_pin)
 		max_level = prices.size()
-		%CurrentSkin.set_skin(game.pin_texture(selected_pin, level + 1), game.pin_points(selected_pin, level + 1))
+		%CurrentSkin.set_skin(game.pin_texture(selected_pin, level + 1), game.pin_points(selected_pin, level + 1), game.PIN_ACCENTS[selected_pin])
 		%NextSkin.visible = level < max_level
 		if level < max_level:
-			%NextSkin.set_skin(game.pin_texture(selected_pin, level + 2), game.pin_points(selected_pin, level + 2))
+			%NextSkin.set_skin(game.pin_texture(selected_pin, level + 2), game.pin_points(selected_pin, level + 2), game.PIN_ACCENTS[selected_pin])
 		detail_title.text = "%s · %s" % [game.PIN_NAMES[selected_pin], "Gold-Pin" if game.is_golden(selected_pin) else "Pin"]
-		%Level.text = "LEVEL %s / %s   ·   EINZELNES UPGRADE" % [level + 1, game.PIN_MAX_LEVEL]
+		%Level.text = "Level %s / %s" % [level + 1, game.PIN_MAX_LEVEL]
 		%CurrentEffect.text = "JETZT\n" + pin_effect(selected_pin, level + 1)
 		next_effect.text = "NÄCHSTES LEVEL\n" + pin_effect(selected_pin, level + 2) if level < max_level else "VOLL AUSGEBAUT\nAlle neun Level freigeschaltet."
 	else:
@@ -119,7 +124,7 @@ func refresh() -> void:
 		max_level = game.COSTS.size()
 		available = selected_upgrade in game.offers
 		detail_title.text = game.UPGRADES[selected_upgrade][0]
-		%Level.text = "STUFE %s / 3   ·   AUSRÜSTUNG" % level
+		%Level.text = "Stufe %s / 3" % level
 		%CurrentEffect.text = "JETZT\n" + (BASE_EFFECTS[selected_upgrade] if level == 0 else game.UPGRADES[selected_upgrade][level])
 		next_effect.text = "NÄCHSTE STUFE\n" + game.UPGRADES[selected_upgrade][level + 1] if level < max_level else "VOLL AUSGEBAUT\nAlle Stufen freigeschaltet."
 		if selected_upgrade == "save":
@@ -138,12 +143,10 @@ func refresh() -> void:
 func buy_selected() -> void:
 	var purchased: bool = game.buy_pin(selected_pin) if category == 0 else game.buy_upgrade(selected_upgrade)
 	if purchased:
-		refresh()
 		%Feedback.text = "✓ %s verbessert." % (game.PIN_NAMES[selected_pin] if category == 0 else game.UPGRADES[selected_upgrade][0])
 
 func buy_extra_life() -> void:
 	if game.buy_extra_life():
-		refresh()
 		%Feedback.text = "✓ Zusatzkugel gekauft. %s Kugeln übrig." % game.balls_left
 
 func continue_run() -> void:

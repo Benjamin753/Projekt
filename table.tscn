@@ -1,8 +1,8 @@
-[gd_scene load_steps=131 format=3]
+[gd_scene load_steps=130 format=3]
 
 [ext_resource type="Script" path="res://flipper.gd" id="flipper"]
 
-[ext_resource type="Texture2D" path="res://assets/pinball/flipper.png" id="flippertex"]
+[ext_resource type="PhysicsMaterial" path="res://assets/pinball/pad_material.tres" id="padmat"]
 
 [ext_resource type="Script" path="res://bounce_pad.gd" id="padscript"]
 
@@ -11,8 +11,6 @@
 [ext_resource type="Script" path="res://pin_skin.gd" id="skin"]
 
 [ext_resource type="PhysicsMaterial" path="res://assets/pinball/rail_material.tres" id="railmat"]
-
-[ext_resource type="PhysicsMaterial" path="res://assets/pinball/pad_material.tres" id="padmat"]
 
 [ext_resource type="PhysicsMaterial" path="res://assets/pinball/pin_material.tres" id="pinmat"]
 
@@ -455,43 +453,43 @@ height = 82.02631123499285
 
 [sub_resource type="CapsuleShape2D" id="rail102"]
 radius = 2.5
-height = 97.0
+height = 106
 
 [sub_resource type="CapsuleShape2D" id="rail103"]
 radius = 2.5
-height = 71.94027188471824
+height = 71.9402718847
 
 [sub_resource type="CapsuleShape2D" id="rail104"]
 radius = 2.0
-height = 130.0515767453942
+height = 137.843191833
 
 [sub_resource type="CapsuleShape2D" id="rail105"]
 radius = 2.5
-height = 97.0
+height = 106
 
 [sub_resource type="CapsuleShape2D" id="rail106"]
 radius = 2.5
-height = 71.94027188471824
+height = 71.9402718847
 
 [sub_resource type="CapsuleShape2D" id="rail107"]
 radius = 2.0
-height = 130.0515767453942
+height = 137.843191833
 
 [sub_resource type="CapsuleShape2D" id="rail108"]
 radius = 5.5
-height = 137.0
+height = 143.0
 
 [sub_resource type="CapsuleShape2D" id="rail109"]
 radius = 5.5
-height = 98.29833904490967
+height = 100.4427190999916
 
 [sub_resource type="CapsuleShape2D" id="rail110"]
 radius = 5.5
-height = 137.0
+height = 143.0
 
 [sub_resource type="CapsuleShape2D" id="rail111"]
 radius = 5.5
-height = 98.29833904490967
+height = 100.4427190999916
 
 [node name="Table" type="Node2D"]
 
@@ -519,6 +517,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail1")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment00"]
+z_index = -3
 points = PackedVector2Array(-6.88068, 0, 6.88068, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -528,18 +527,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment00"]
+z_index = -2
 points = PackedVector2Array(-6.88068, 0, 6.88068, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment00"]
+z_index = -1
 points = PackedVector2Array(-6.88068, 0, 6.88068, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -555,6 +556,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail2")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment01"]
+z_index = -3
 points = PackedVector2Array(-6.3942, 0, 6.3942, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -564,18 +566,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment01"]
+z_index = -2
 points = PackedVector2Array(-6.3942, 0, 6.3942, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment01"]
+z_index = -1
 points = PackedVector2Array(-6.3942, 0, 6.3942, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -591,6 +595,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail3")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment02"]
+z_index = -3
 points = PackedVector2Array(-6.04402, 0, 6.04402, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -600,18 +605,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment02"]
+z_index = -2
 points = PackedVector2Array(-6.04402, 0, 6.04402, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment02"]
+z_index = -1
 points = PackedVector2Array(-6.04402, 0, 6.04402, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -627,6 +634,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail4")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment03"]
+z_index = -3
 points = PackedVector2Array(-5.85463, 0, 5.85463, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -636,18 +644,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment03"]
+z_index = -2
 points = PackedVector2Array(-5.85463, 0, 5.85463, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment03"]
+z_index = -1
 points = PackedVector2Array(-5.85463, 0, 5.85463, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -663,6 +673,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail5")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment04"]
+z_index = -3
 points = PackedVector2Array(-5.8417, 0, 5.8417, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -672,18 +683,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment04"]
+z_index = -2
 points = PackedVector2Array(-5.8417, 0, 5.8417, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment04"]
+z_index = -1
 points = PackedVector2Array(-5.8417, 0, 5.8417, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -699,6 +712,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail6")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment05"]
+z_index = -3
 points = PackedVector2Array(-6.00637, 0, 6.00637, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -708,18 +722,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment05"]
+z_index = -2
 points = PackedVector2Array(-6.00637, 0, 6.00637, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment05"]
+z_index = -1
 points = PackedVector2Array(-6.00637, 0, 6.00637, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -735,6 +751,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail7")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment06"]
+z_index = -3
 points = PackedVector2Array(-6.3348, 0, 6.3348, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -744,18 +761,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment06"]
+z_index = -2
 points = PackedVector2Array(-6.3348, 0, 6.3348, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment06"]
+z_index = -1
 points = PackedVector2Array(-6.3348, 0, 6.3348, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -771,6 +790,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail8")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment07"]
+z_index = -3
 points = PackedVector2Array(-6.80332, 0, 6.80332, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -780,18 +800,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment07"]
+z_index = -2
 points = PackedVector2Array(-6.80332, 0, 6.80332, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment07"]
+z_index = -1
 points = PackedVector2Array(-6.80332, 0, 6.80332, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -807,6 +829,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail9")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment08"]
+z_index = -3
 points = PackedVector2Array(-7.38531, 0, 7.38531, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -816,18 +839,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment08"]
+z_index = -2
 points = PackedVector2Array(-7.38531, 0, 7.38531, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment08"]
+z_index = -1
 points = PackedVector2Array(-7.38531, 0, 7.38531, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -843,6 +868,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail10")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment09"]
+z_index = -3
 points = PackedVector2Array(-8.05623, 0, 8.05623, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -852,18 +878,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment09"]
+z_index = -2
 points = PackedVector2Array(-8.05623, 0, 8.05623, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment09"]
+z_index = -1
 points = PackedVector2Array(-8.05623, 0, 8.05623, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -879,6 +907,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail11")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment10"]
+z_index = -3
 points = PackedVector2Array(-8.79574, 0, 8.79574, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -888,18 +917,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment10"]
+z_index = -2
 points = PackedVector2Array(-8.79574, 0, 8.79574, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment10"]
+z_index = -1
 points = PackedVector2Array(-8.79574, 0, 8.79574, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -915,6 +946,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail12")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment11"]
+z_index = -3
 points = PackedVector2Array(-9.58798, 0, 9.58798, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -924,18 +956,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment11"]
+z_index = -2
 points = PackedVector2Array(-9.58798, 0, 9.58798, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment11"]
+z_index = -1
 points = PackedVector2Array(-9.58798, 0, 9.58798, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -951,6 +985,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail13")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment12"]
+z_index = -3
 points = PackedVector2Array(-114, 0, 114, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -960,18 +995,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment12"]
+z_index = -2
 points = PackedVector2Array(-114, 0, 114, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment12"]
+z_index = -1
 points = PackedVector2Array(-114, 0, 114, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -987,6 +1024,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail14")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment13"]
+z_index = -3
 points = PackedVector2Array(-7.35329, 0, 7.35329, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -996,18 +1034,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment13"]
+z_index = -2
 points = PackedVector2Array(-7.35329, 0, 7.35329, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment13"]
+z_index = -1
 points = PackedVector2Array(-7.35329, 0, 7.35329, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1023,6 +1063,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail15")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment14"]
+z_index = -3
 points = PackedVector2Array(-6.76788, 0, 6.76788, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1032,18 +1073,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment14"]
+z_index = -2
 points = PackedVector2Array(-6.76788, 0, 6.76788, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment14"]
+z_index = -1
 points = PackedVector2Array(-6.76788, 0, 6.76788, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1059,6 +1102,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail16")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment15"]
+z_index = -3
 points = PackedVector2Array(-6.25039, 0, 6.25039, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1068,18 +1112,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment15"]
+z_index = -2
 points = PackedVector2Array(-6.25039, 0, 6.25039, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment15"]
+z_index = -1
 points = PackedVector2Array(-6.25039, 0, 6.25039, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1095,6 +1141,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail17")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment16"]
+z_index = -3
 points = PackedVector2Array(-5.81895, 0, 5.81895, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1104,18 +1151,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment16"]
+z_index = -2
 points = PackedVector2Array(-5.81895, 0, 5.81895, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment16"]
+z_index = -1
 points = PackedVector2Array(-5.81895, 0, 5.81895, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1131,6 +1180,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail18")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment17"]
+z_index = -3
 points = PackedVector2Array(-5.49388, 0, 5.49388, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1140,18 +1190,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment17"]
+z_index = -2
 points = PackedVector2Array(-5.49388, 0, 5.49388, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment17"]
+z_index = -1
 points = PackedVector2Array(-5.49388, 0, 5.49388, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1167,6 +1219,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail19")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment18"]
+z_index = -3
 points = PackedVector2Array(-5.29481, 0, 5.29481, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1176,18 +1229,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment18"]
+z_index = -2
 points = PackedVector2Array(-5.29481, 0, 5.29481, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment18"]
+z_index = -1
 points = PackedVector2Array(-5.29481, 0, 5.29481, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1203,6 +1258,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail20")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment19"]
+z_index = -3
 points = PackedVector2Array(-5.23612, 0, 5.23612, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1212,18 +1268,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment19"]
+z_index = -2
 points = PackedVector2Array(-5.23612, 0, 5.23612, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment19"]
+z_index = -1
 points = PackedVector2Array(-5.23612, 0, 5.23612, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1239,6 +1297,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail21")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment20"]
+z_index = -3
 points = PackedVector2Array(-5.32246, 0, 5.32246, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1248,18 +1307,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment20"]
+z_index = -2
 points = PackedVector2Array(-5.32246, 0, 5.32246, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment20"]
+z_index = -1
 points = PackedVector2Array(-5.32246, 0, 5.32246, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1275,6 +1336,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail22")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment21"]
+z_index = -3
 points = PackedVector2Array(-5.54706, 0, 5.54706, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1284,18 +1346,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment21"]
+z_index = -2
 points = PackedVector2Array(-5.54706, 0, 5.54706, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment21"]
+z_index = -1
 points = PackedVector2Array(-5.54706, 0, 5.54706, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1311,6 +1375,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail23")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment22"]
+z_index = -3
 points = PackedVector2Array(-5.89415, 0, 5.89415, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1320,18 +1385,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment22"]
+z_index = -2
 points = PackedVector2Array(-5.89415, 0, 5.89415, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment22"]
+z_index = -1
 points = PackedVector2Array(-5.89415, 0, 5.89415, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1347,6 +1414,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail24")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment23"]
+z_index = -3
 points = PackedVector2Array(-6.34364, 0, 6.34364, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1356,18 +1424,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment23"]
+z_index = -2
 points = PackedVector2Array(-6.34364, 0, 6.34364, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment23"]
+z_index = -1
 points = PackedVector2Array(-6.34364, 0, 6.34364, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1383,6 +1453,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail25")
 
 [node name="Shadow" type="Line2D" parent="Rails/Canopy/Segment24"]
+z_index = -3
 points = PackedVector2Array(-6.87548, 0, 6.87548, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1392,18 +1463,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/Canopy/Segment24"]
+z_index = -2
 points = PackedVector2Array(-6.87548, 0, 6.87548, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/Canopy/Segment24"]
+z_index = -1
 points = PackedVector2Array(-6.87548, 0, 6.87548, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1419,6 +1492,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail26")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftOuter"]
+z_index = -3
 points = PackedVector2Array(-94, 0, 94, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1428,18 +1502,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftOuter"]
+z_index = -2
 points = PackedVector2Array(-94, 0, 94, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftOuter"]
+z_index = -1
 points = PackedVector2Array(-94, 0, 94, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1455,6 +1531,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail27")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightOuter"]
+z_index = -3
 points = PackedVector2Array(-293.5, 0, 293.5, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1464,18 +1541,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightOuter"]
+z_index = -2
 points = PackedVector2Array(-293.5, 0, 293.5, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightOuter"]
+z_index = -1
 points = PackedVector2Array(-293.5, 0, 293.5, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1494,6 +1573,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail28")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment00"]
+z_index = -3
 points = PackedVector2Array(-5.42467, 0, 5.42467, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1503,18 +1583,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment00"]
+z_index = -2
 points = PackedVector2Array(-5.42467, 0, 5.42467, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment00"]
+z_index = -1
 points = PackedVector2Array(-5.42467, 0, 5.42467, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1530,6 +1612,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail29")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment01"]
+z_index = -3
 points = PackedVector2Array(-5.30313, 0, 5.30313, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1539,18 +1622,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment01"]
+z_index = -2
 points = PackedVector2Array(-5.30313, 0, 5.30313, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment01"]
+z_index = -1
 points = PackedVector2Array(-5.30313, 0, 5.30313, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1566,6 +1651,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail30")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment02"]
+z_index = -3
 points = PackedVector2Array(-5.22261, 0, 5.22261, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1575,18 +1661,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment02"]
+z_index = -2
 points = PackedVector2Array(-5.22261, 0, 5.22261, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment02"]
+z_index = -1
 points = PackedVector2Array(-5.22261, 0, 5.22261, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1602,6 +1690,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail31")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment03"]
+z_index = -3
 points = PackedVector2Array(-5.185, 0, 5.185, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1611,18 +1700,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment03"]
+z_index = -2
 points = PackedVector2Array(-5.185, 0, 5.185, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment03"]
+z_index = -1
 points = PackedVector2Array(-5.185, 0, 5.185, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1638,6 +1729,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail32")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment04"]
+z_index = -3
 points = PackedVector2Array(-5.19125, 0, 5.19125, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1647,18 +1739,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment04"]
+z_index = -2
 points = PackedVector2Array(-5.19125, 0, 5.19125, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment04"]
+z_index = -1
 points = PackedVector2Array(-5.19125, 0, 5.19125, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1674,6 +1768,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail33")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment05"]
+z_index = -3
 points = PackedVector2Array(-5.24119, 0, 5.24119, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1683,18 +1778,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment05"]
+z_index = -2
 points = PackedVector2Array(-5.24119, 0, 5.24119, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment05"]
+z_index = -1
 points = PackedVector2Array(-5.24119, 0, 5.24119, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1710,6 +1807,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail34")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment06"]
+z_index = -3
 points = PackedVector2Array(-5.33359, 0, 5.33359, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1719,18 +1817,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment06"]
+z_index = -2
 points = PackedVector2Array(-5.33359, 0, 5.33359, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment06"]
+z_index = -1
 points = PackedVector2Array(-5.33359, 0, 5.33359, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1746,6 +1846,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail35")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment07"]
+z_index = -3
 points = PackedVector2Array(-5.46632, 0, 5.46632, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1755,18 +1856,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment07"]
+z_index = -2
 points = PackedVector2Array(-5.46632, 0, 5.46632, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment07"]
+z_index = -1
 points = PackedVector2Array(-5.46632, 0, 5.46632, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1782,6 +1885,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail36")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment08"]
+z_index = -3
 points = PackedVector2Array(-5.63651, 0, 5.63651, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1791,18 +1895,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment08"]
+z_index = -2
 points = PackedVector2Array(-5.63651, 0, 5.63651, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment08"]
+z_index = -1
 points = PackedVector2Array(-5.63651, 0, 5.63651, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1818,6 +1924,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail37")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment09"]
+z_index = -3
 points = PackedVector2Array(-5.84089, 0, 5.84089, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1827,18 +1934,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment09"]
+z_index = -2
 points = PackedVector2Array(-5.84089, 0, 5.84089, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment09"]
+z_index = -1
 points = PackedVector2Array(-5.84089, 0, 5.84089, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1854,6 +1963,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail38")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment10"]
+z_index = -3
 points = PackedVector2Array(-4.50676, 0, 4.50676, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1863,18 +1973,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment10"]
+z_index = -2
 points = PackedVector2Array(-4.50676, 0, 4.50676, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment10"]
+z_index = -1
 points = PackedVector2Array(-4.50676, 0, 4.50676, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1890,6 +2002,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail39")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment11"]
+z_index = -3
 points = PackedVector2Array(-4.37359, 0, 4.37359, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1899,18 +2012,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment11"]
+z_index = -2
 points = PackedVector2Array(-4.37359, 0, 4.37359, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment11"]
+z_index = -1
 points = PackedVector2Array(-4.37359, 0, 4.37359, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1926,6 +2041,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail40")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment12"]
+z_index = -3
 points = PackedVector2Array(-4.26065, 0, 4.26065, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1935,18 +2051,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment12"]
+z_index = -2
 points = PackedVector2Array(-4.26065, 0, 4.26065, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment12"]
+z_index = -1
 points = PackedVector2Array(-4.26065, 0, 4.26065, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1962,6 +2080,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail41")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment13"]
+z_index = -3
 points = PackedVector2Array(-4.16957, 0, 4.16957, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -1971,18 +2090,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment13"]
+z_index = -2
 points = PackedVector2Array(-4.16957, 0, 4.16957, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment13"]
+z_index = -1
 points = PackedVector2Array(-4.16957, 0, 4.16957, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -1998,6 +2119,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail42")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment14"]
+z_index = -3
 points = PackedVector2Array(-4.10182, 0, 4.10182, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2007,18 +2129,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment14"]
+z_index = -2
 points = PackedVector2Array(-4.10182, 0, 4.10182, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment14"]
+z_index = -1
 points = PackedVector2Array(-4.10182, 0, 4.10182, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2034,6 +2158,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail43")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment15"]
+z_index = -3
 points = PackedVector2Array(-4.05856, 0, 4.05856, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2043,18 +2168,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment15"]
+z_index = -2
 points = PackedVector2Array(-4.05856, 0, 4.05856, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment15"]
+z_index = -1
 points = PackedVector2Array(-4.05856, 0, 4.05856, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2070,6 +2197,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail44")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment16"]
+z_index = -3
 points = PackedVector2Array(-4.04058, 0, 4.04058, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2079,18 +2207,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment16"]
+z_index = -2
 points = PackedVector2Array(-4.04058, 0, 4.04058, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment16"]
+z_index = -1
 points = PackedVector2Array(-4.04058, 0, 4.04058, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2106,6 +2236,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail45")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment17"]
+z_index = -3
 points = PackedVector2Array(-4.04822, 0, 4.04822, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2115,18 +2246,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment17"]
+z_index = -2
 points = PackedVector2Array(-4.04822, 0, 4.04822, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment17"]
+z_index = -1
 points = PackedVector2Array(-4.04822, 0, 4.04822, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2142,6 +2275,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail46")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment18"]
+z_index = -3
 points = PackedVector2Array(-4.08134, 0, 4.08134, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2151,18 +2285,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment18"]
+z_index = -2
 points = PackedVector2Array(-4.08134, 0, 4.08134, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment18"]
+z_index = -1
 points = PackedVector2Array(-4.08134, 0, 4.08134, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2178,6 +2314,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail47")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftWaist/Segment19"]
+z_index = -3
 points = PackedVector2Array(-4.13931, 0, 4.13931, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2187,18 +2324,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftWaist/Segment19"]
+z_index = -2
 points = PackedVector2Array(-4.13931, 0, 4.13931, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftWaist/Segment19"]
+z_index = -1
 points = PackedVector2Array(-4.13931, 0, 4.13931, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2217,6 +2356,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail48")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment00"]
+z_index = -3
 points = PackedVector2Array(-5.1154, 0, 5.1154, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2226,18 +2366,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment00"]
+z_index = -2
 points = PackedVector2Array(-5.1154, 0, 5.1154, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment00"]
+z_index = -1
 points = PackedVector2Array(-5.1154, 0, 5.1154, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2253,6 +2395,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail49")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment01"]
+z_index = -3
 points = PackedVector2Array(-4.98015, 0, 4.98015, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2262,18 +2405,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment01"]
+z_index = -2
 points = PackedVector2Array(-4.98015, 0, 4.98015, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment01"]
+z_index = -1
 points = PackedVector2Array(-4.98015, 0, 4.98015, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2289,6 +2434,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail50")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment02"]
+z_index = -3
 points = PackedVector2Array(-4.89317, 0, 4.89317, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2298,18 +2444,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment02"]
+z_index = -2
 points = PackedVector2Array(-4.89317, 0, 4.89317, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment02"]
+z_index = -1
 points = PackedVector2Array(-4.89317, 0, 4.89317, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2325,6 +2473,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail51")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment03"]
+z_index = -3
 points = PackedVector2Array(-4.85705, 0, 4.85705, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2334,18 +2483,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment03"]
+z_index = -2
 points = PackedVector2Array(-4.85705, 0, 4.85705, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment03"]
+z_index = -1
 points = PackedVector2Array(-4.85705, 0, 4.85705, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2361,6 +2512,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail52")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment04"]
+z_index = -3
 points = PackedVector2Array(-4.87292, 0, 4.87292, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2370,18 +2522,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment04"]
+z_index = -2
 points = PackedVector2Array(-4.87292, 0, 4.87292, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment04"]
+z_index = -1
 points = PackedVector2Array(-4.87292, 0, 4.87292, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2397,6 +2551,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail53")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment05"]
+z_index = -3
 points = PackedVector2Array(-4.94028, 0, 4.94028, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2406,18 +2561,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment05"]
+z_index = -2
 points = PackedVector2Array(-4.94028, 0, 4.94028, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment05"]
+z_index = -1
 points = PackedVector2Array(-4.94028, 0, 4.94028, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2433,6 +2590,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail54")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment06"]
+z_index = -3
 points = PackedVector2Array(-5.05707, 0, 5.05707, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2442,18 +2600,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment06"]
+z_index = -2
 points = PackedVector2Array(-5.05707, 0, 5.05707, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment06"]
+z_index = -1
 points = PackedVector2Array(-5.05707, 0, 5.05707, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2469,6 +2629,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail55")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment07"]
+z_index = -3
 points = PackedVector2Array(-5.21997, 0, 5.21997, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2478,18 +2639,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment07"]
+z_index = -2
 points = PackedVector2Array(-5.21997, 0, 5.21997, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment07"]
+z_index = -1
 points = PackedVector2Array(-5.21997, 0, 5.21997, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2505,6 +2668,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail56")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment08"]
+z_index = -3
 points = PackedVector2Array(-5.42484, 0, 5.42484, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2514,18 +2678,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment08"]
+z_index = -2
 points = PackedVector2Array(-5.42484, 0, 5.42484, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment08"]
+z_index = -1
 points = PackedVector2Array(-5.42484, 0, 5.42484, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2541,6 +2707,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail57")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment09"]
+z_index = -3
 points = PackedVector2Array(-5.66713, 0, 5.66713, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2550,18 +2717,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment09"]
+z_index = -2
 points = PackedVector2Array(-5.66713, 0, 5.66713, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment09"]
+z_index = -1
 points = PackedVector2Array(-5.66713, 0, 5.66713, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2577,6 +2746,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail58")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment10"]
+z_index = -3
 points = PackedVector2Array(-4.52915, 0, 4.52915, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2586,18 +2756,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment10"]
+z_index = -2
 points = PackedVector2Array(-4.52915, 0, 4.52915, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment10"]
+z_index = -1
 points = PackedVector2Array(-4.52915, 0, 4.52915, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2613,6 +2785,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail59")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment11"]
+z_index = -3
 points = PackedVector2Array(-4.40874, 0, 4.40874, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2622,18 +2795,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment11"]
+z_index = -2
 points = PackedVector2Array(-4.40874, 0, 4.40874, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment11"]
+z_index = -1
 points = PackedVector2Array(-4.40874, 0, 4.40874, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2649,6 +2824,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail60")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment12"]
+z_index = -3
 points = PackedVector2Array(-4.33712, 0, 4.33712, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2658,18 +2834,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment12"]
+z_index = -2
 points = PackedVector2Array(-4.33712, 0, 4.33712, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment12"]
+z_index = -1
 points = PackedVector2Array(-4.33712, 0, 4.33712, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2685,6 +2863,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail61")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment13"]
+z_index = -3
 points = PackedVector2Array(-4.31671, 0, 4.31671, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2694,18 +2873,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment13"]
+z_index = -2
 points = PackedVector2Array(-4.31671, 0, 4.31671, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment13"]
+z_index = -1
 points = PackedVector2Array(-4.31671, 0, 4.31671, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2721,6 +2902,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail62")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment14"]
+z_index = -3
 points = PackedVector2Array(-4.34824, 0, 4.34824, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2730,18 +2912,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment14"]
+z_index = -2
 points = PackedVector2Array(-4.34824, 0, 4.34824, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment14"]
+z_index = -1
 points = PackedVector2Array(-4.34824, 0, 4.34824, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2757,6 +2941,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail63")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment15"]
+z_index = -3
 points = PackedVector2Array(-4.4306, 0, 4.4306, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2766,18 +2951,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment15"]
+z_index = -2
 points = PackedVector2Array(-4.4306, 0, 4.4306, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment15"]
+z_index = -1
 points = PackedVector2Array(-4.4306, 0, 4.4306, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2793,6 +2980,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail64")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment16"]
+z_index = -3
 points = PackedVector2Array(-4.56103, 0, 4.56103, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2802,18 +2990,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment16"]
+z_index = -2
 points = PackedVector2Array(-4.56103, 0, 4.56103, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment16"]
+z_index = -1
 points = PackedVector2Array(-4.56103, 0, 4.56103, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2829,6 +3019,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail65")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment17"]
+z_index = -3
 points = PackedVector2Array(-4.73557, 0, 4.73557, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2838,18 +3029,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment17"]
+z_index = -2
 points = PackedVector2Array(-4.73557, 0, 4.73557, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment17"]
+z_index = -1
 points = PackedVector2Array(-4.73557, 0, 4.73557, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2865,6 +3058,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail66")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment18"]
+z_index = -3
 points = PackedVector2Array(-4.94955, 0, 4.94955, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2874,18 +3068,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment18"]
+z_index = -2
 points = PackedVector2Array(-4.94955, 0, 4.94955, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment18"]
+z_index = -1
 points = PackedVector2Array(-4.94955, 0, 4.94955, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2901,6 +3097,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail67")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightWaist/Segment19"]
+z_index = -3
 points = PackedVector2Array(-5.1981, 0, 5.1981, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2910,18 +3107,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightWaist/Segment19"]
+z_index = -2
 points = PackedVector2Array(-5.1981, 0, 5.1981, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightWaist/Segment19"]
+z_index = -1
 points = PackedVector2Array(-5.1981, 0, 5.1981, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2937,6 +3136,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail68")
 
 [node name="Shadow" type="Line2D" parent="Rails/LowerLeftOuter"]
+z_index = -3
 points = PackedVector2Array(-78, 0, 78, 0)
 width = 15
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2946,18 +3146,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LowerLeftOuter"]
+z_index = -2
 points = PackedVector2Array(-78, 0, 78, 0)
 width = 8
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LowerLeftOuter"]
+z_index = -1
 points = PackedVector2Array(-78, 0, 78, 0)
 width = 2.24
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -2973,6 +3175,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail69")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftApron"]
+z_index = -3
 points = PackedVector2Array(-77.8974, 0, 77.8974, 0)
 width = 14
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -2982,18 +3185,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftApron"]
+z_index = -2
 points = PackedVector2Array(-77.8974, 0, 77.8974, 0)
 width = 7
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftApron"]
+z_index = -1
 points = PackedVector2Array(-77.8974, 0, 77.8974, 0)
 width = 1.9600000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3009,6 +3214,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail70")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightApron"]
+z_index = -3
 points = PackedVector2Array(-75.2928, 0, 75.2928, 0)
 width = 14
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3018,18 +3224,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightApron"]
+z_index = -2
 points = PackedVector2Array(-75.2928, 0, 75.2928, 0)
 width = 7
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightApron"]
+z_index = -1
 points = PackedVector2Array(-75.2928, 0, 75.2928, 0)
 width = 1.9600000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3048,6 +3256,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail71")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment00"]
+z_index = -3
 points = PackedVector2Array(-10.5, 0, 10.5, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3057,18 +3266,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment00"]
+z_index = -2
 points = PackedVector2Array(-10.5, 0, 10.5, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment00"]
+z_index = -1
 points = PackedVector2Array(-10.5, 0, 10.5, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3084,6 +3295,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail72")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment01"]
+z_index = -3
 points = PackedVector2Array(-4.18527, 0, 4.18527, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3093,18 +3305,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment01"]
+z_index = -2
 points = PackedVector2Array(-4.18527, 0, 4.18527, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment01"]
+z_index = -1
 points = PackedVector2Array(-4.18527, 0, 4.18527, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3120,6 +3334,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail73")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment02"]
+z_index = -3
 points = PackedVector2Array(-3.79269, 0, 3.79269, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3129,18 +3344,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment02"]
+z_index = -2
 points = PackedVector2Array(-3.79269, 0, 3.79269, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment02"]
+z_index = -1
 points = PackedVector2Array(-3.79269, 0, 3.79269, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3156,6 +3373,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail74")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment03"]
+z_index = -3
 points = PackedVector2Array(-3.46302, 0, 3.46302, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3165,18 +3383,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment03"]
+z_index = -2
 points = PackedVector2Array(-3.46302, 0, 3.46302, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment03"]
+z_index = -1
 points = PackedVector2Array(-3.46302, 0, 3.46302, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3192,6 +3412,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail75")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment04"]
+z_index = -3
 points = PackedVector2Array(-3.21566, 0, 3.21566, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3201,18 +3422,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment04"]
+z_index = -2
 points = PackedVector2Array(-3.21566, 0, 3.21566, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment04"]
+z_index = -1
 points = PackedVector2Array(-3.21566, 0, 3.21566, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3228,6 +3451,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail76")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment05"]
+z_index = -3
 points = PackedVector2Array(-3.07059, 0, 3.07059, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3237,18 +3461,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment05"]
+z_index = -2
 points = PackedVector2Array(-3.07059, 0, 3.07059, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment05"]
+z_index = -1
 points = PackedVector2Array(-3.07059, 0, 3.07059, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3264,6 +3490,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail77")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment06"]
+z_index = -3
 points = PackedVector2Array(-3.04245, 0, 3.04245, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3273,18 +3500,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment06"]
+z_index = -2
 points = PackedVector2Array(-3.04245, 0, 3.04245, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment06"]
+z_index = -1
 points = PackedVector2Array(-3.04245, 0, 3.04245, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3300,6 +3529,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail78")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment07"]
+z_index = -3
 points = PackedVector2Array(-3.13441, 0, 3.13441, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3309,18 +3539,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment07"]
+z_index = -2
 points = PackedVector2Array(-3.13441, 0, 3.13441, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment07"]
+z_index = -1
 points = PackedVector2Array(-3.13441, 0, 3.13441, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3336,6 +3568,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail79")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment08"]
+z_index = -3
 points = PackedVector2Array(-3.33654, 0, 3.33654, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3345,18 +3578,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment08"]
+z_index = -2
 points = PackedVector2Array(-3.33654, 0, 3.33654, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment08"]
+z_index = -1
 points = PackedVector2Array(-3.33654, 0, 3.33654, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3372,6 +3607,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail80")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment09"]
+z_index = -3
 points = PackedVector2Array(-3.6305, 0, 3.6305, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3381,18 +3617,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment09"]
+z_index = -2
 points = PackedVector2Array(-3.6305, 0, 3.6305, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment09"]
+z_index = -1
 points = PackedVector2Array(-3.6305, 0, 3.6305, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3408,6 +3646,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail81")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment10"]
+z_index = -3
 points = PackedVector2Array(-3.99606, 0, 3.99606, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3417,18 +3656,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment10"]
+z_index = -2
 points = PackedVector2Array(-3.99606, 0, 3.99606, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment10"]
+z_index = -1
 points = PackedVector2Array(-3.99606, 0, 3.99606, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3444,6 +3685,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail82")
 
 [node name="Shadow" type="Line2D" parent="Rails/LeftGuide/Segment11"]
+z_index = -3
 points = PackedVector2Array(-62, 0, 62, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3453,18 +3695,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/LeftGuide/Segment11"]
+z_index = -2
 points = PackedVector2Array(-62, 0, 62, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/LeftGuide/Segment11"]
+z_index = -1
 points = PackedVector2Array(-62, 0, 62, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3483,6 +3727,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail83")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment00"]
+z_index = -3
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3492,18 +3737,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment00"]
+z_index = -2
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment00"]
+z_index = -1
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3519,6 +3766,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail84")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment01"]
+z_index = -3
 points = PackedVector2Array(-5.11319, 0, 5.11319, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3528,18 +3776,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment01"]
+z_index = -2
 points = PackedVector2Array(-5.11319, 0, 5.11319, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment01"]
+z_index = -1
 points = PackedVector2Array(-5.11319, 0, 5.11319, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3555,6 +3805,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail85")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment02"]
+z_index = -3
 points = PackedVector2Array(-4.68713, 0, 4.68713, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3564,18 +3815,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment02"]
+z_index = -2
 points = PackedVector2Array(-4.68713, 0, 4.68713, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment02"]
+z_index = -1
 points = PackedVector2Array(-4.68713, 0, 4.68713, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3591,6 +3844,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail86")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment03"]
+z_index = -3
 points = PackedVector2Array(-4.28472, 0, 4.28472, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3600,18 +3854,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment03"]
+z_index = -2
 points = PackedVector2Array(-4.28472, 0, 4.28472, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment03"]
+z_index = -1
 points = PackedVector2Array(-4.28472, 0, 4.28472, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3627,6 +3883,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail87")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment04"]
+z_index = -3
 points = PackedVector2Array(-3.91327, 0, 3.91327, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3636,18 +3893,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment04"]
+z_index = -2
 points = PackedVector2Array(-3.91327, 0, 3.91327, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment04"]
+z_index = -1
 points = PackedVector2Array(-3.91327, 0, 3.91327, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3663,6 +3922,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail88")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment05"]
+z_index = -3
 points = PackedVector2Array(-3.58242, 0, 3.58242, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3672,18 +3932,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment05"]
+z_index = -2
 points = PackedVector2Array(-3.58242, 0, 3.58242, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment05"]
+z_index = -1
 points = PackedVector2Array(-3.58242, 0, 3.58242, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3699,6 +3961,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail89")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment06"]
+z_index = -3
 points = PackedVector2Array(-3.3044, 0, 3.3044, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3708,18 +3971,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment06"]
+z_index = -2
 points = PackedVector2Array(-3.3044, 0, 3.3044, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment06"]
+z_index = -1
 points = PackedVector2Array(-3.3044, 0, 3.3044, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3735,6 +4000,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail90")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment07"]
+z_index = -3
 points = PackedVector2Array(-3.09346, 0, 3.09346, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3744,18 +4010,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment07"]
+z_index = -2
 points = PackedVector2Array(-3.09346, 0, 3.09346, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment07"]
+z_index = -1
 points = PackedVector2Array(-3.09346, 0, 3.09346, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3771,6 +4039,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail91")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment08"]
+z_index = -3
 points = PackedVector2Array(-2.96398, 0, 2.96398, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3780,18 +4049,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment08"]
+z_index = -2
 points = PackedVector2Array(-2.96398, 0, 2.96398, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment08"]
+z_index = -1
 points = PackedVector2Array(-2.96398, 0, 2.96398, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3807,6 +4078,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail92")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment09"]
+z_index = -3
 points = PackedVector2Array(-2.92678, 0, 2.92678, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3816,18 +4088,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment09"]
+z_index = -2
 points = PackedVector2Array(-2.92678, 0, 2.92678, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment09"]
+z_index = -1
 points = PackedVector2Array(-2.92678, 0, 2.92678, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3843,6 +4117,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail93")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment10"]
+z_index = -3
 points = PackedVector2Array(-2.98531, 0, 2.98531, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3852,18 +4127,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment10"]
+z_index = -2
 points = PackedVector2Array(-2.98531, 0, 2.98531, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment10"]
+z_index = -1
 points = PackedVector2Array(-2.98531, 0, 2.98531, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3879,6 +4156,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail94")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment11"]
+z_index = -3
 points = PackedVector2Array(-3.13422, 0, 3.13422, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3888,18 +4166,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment11"]
+z_index = -2
 points = PackedVector2Array(-3.13422, 0, 3.13422, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment11"]
+z_index = -1
 points = PackedVector2Array(-3.13422, 0, 3.13422, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3915,6 +4195,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail95")
 
 [node name="Shadow" type="Line2D" parent="Rails/RightGuide/Segment12"]
+z_index = -3
 points = PackedVector2Array(-3.36152, 0, 3.36152, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3924,18 +4205,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/RightGuide/Segment12"]
+z_index = -2
 points = PackedVector2Array(-3.36152, 0, 3.36152, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/RightGuide/Segment12"]
+z_index = -1
 points = PackedVector2Array(-3.36152, 0, 3.36152, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3951,6 +4234,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail96")
 
 [node name="Shadow" type="Line2D" parent="Rails/ShooterDivider"]
+z_index = -3
 points = PackedVector2Array(-289.5, 0, 289.5, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3960,18 +4244,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/ShooterDivider"]
+z_index = -2
 points = PackedVector2Array(-289.5, 0, 289.5, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/ShooterDivider"]
+z_index = -1
 points = PackedVector2Array(-289.5, 0, 289.5, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -3987,6 +4273,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail97")
 
 [node name="Shadow" type="Line2D" parent="Rails/ShooterFloor"]
+z_index = -3
 points = PackedVector2Array(-21.5, 0, 21.5, 0)
 width = 14
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -3996,18 +4283,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Rails/ShooterFloor"]
+z_index = -2
 points = PackedVector2Array(-21.5, 0, 21.5, 0)
 width = 7
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Rails/ShooterFloor"]
+z_index = -1
 points = PackedVector2Array(-21.5, 0, 21.5, 0)
 width = 1.9600000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4026,6 +4315,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail98")
 
 [node name="Shadow" type="Line2D" parent="TopLanes/LeftDivider"]
+z_index = -3
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -4035,18 +4325,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="TopLanes/LeftDivider"]
+z_index = -2
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="TopLanes/LeftDivider"]
+z_index = -1
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4062,6 +4354,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail99")
 
 [node name="Shadow" type="Line2D" parent="TopLanes/RightDivider"]
+z_index = -3
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 13
 default_color = Color(0.005, 0.012, 0.025, 0.65)
@@ -4071,18 +4364,20 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="TopLanes/RightDivider"]
+z_index = -2
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="TopLanes/RightDivider"]
+z_index = -1
 points = PackedVector2Array(-18, 0, 18, 0)
 width = 1.6800000000000002
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4092,7 +4387,7 @@ antialiased = true
 
 
 [node name="UpperLeft" type="StaticBody2D" parent="Pins"]
-position = Vector2(156, 255)
+position = Vector2(169, 270)
 physics_material_override = ExtResource("pinmat")
 metadata/pin = 0
 
@@ -4111,7 +4406,7 @@ antialiased = true
 [node name="Rim" type="Line2D" parent="Pins/UpperLeft"]
 points = PackedVector2Array(20.5, 0, 20.4013, 2.00935, 20.1061, 3.99935, 19.6173, 5.95084, 18.9395, 7.84501, 18.0794, 9.66363, 17.0451, 11.3892, 15.8467, 13.0051, 14.4957, 14.4957, 13.0051, 15.8467, 11.3892, 17.0451, 9.66363, 18.0794, 7.84501, 18.9395, 5.95084, 19.6173, 3.99935, 20.1061, 2.00935, 20.4013, 1.25526e-15, 20.5, -2.00935, 20.4013, -3.99935, 20.1061, -5.95084, 19.6173, -7.84501, 18.9395, -9.66363, 18.0794, -11.3892, 17.0451, -13.0051, 15.8467, -14.4957, 14.4957, -15.8467, 13.0051, -17.0451, 11.3892, -18.0794, 9.66363, -18.9395, 7.84501, -19.6173, 5.95084, -20.1061, 3.99935, -20.4013, 2.00935, -20.5, 2.51053e-15, -20.4013, -2.00935, -20.1061, -3.99935, -19.6173, -5.95084, -18.9395, -7.84501, -18.0794, -9.66363, -17.0451, -11.3892, -15.8467, -13.0051, -14.4957, -14.4957, -13.0051, -15.8467, -11.3892, -17.0451, -9.66363, -18.0794, -7.84501, -18.9395, -5.95084, -19.6173, -3.99935, -20.1061, -2.00935, -20.4013, -3.76579e-15, -20.5, 2.00935, -20.4013, 3.99935, -20.1061, 5.95084, -19.6173, 7.84501, -18.9395, 9.66363, -18.0794, 11.3892, -17.0451, 13.0051, -15.8467, 14.4957, -14.4957, 15.8467, -13.0051, 17.0451, -11.3892, 18.0794, -9.66363, 18.9395, -7.84501, 19.6173, -5.95084, 20.1061, -3.99935, 20.4013, -2.00935, 20.5, -5.02105e-15)
 width = 1
-default_color = Color(0.30, 0.40, 0.47, 1)
+default_color = Color(0.37, 0.46, 0.58, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4142,7 +4437,7 @@ theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 
 [node name="UpperRight" type="StaticBody2D" parent="Pins"]
-position = Vector2(294, 255)
+position = Vector2(287, 270)
 physics_material_override = ExtResource("pinmat")
 metadata/pin = 1
 
@@ -4161,7 +4456,7 @@ antialiased = true
 [node name="Rim" type="Line2D" parent="Pins/UpperRight"]
 points = PackedVector2Array(20.5, 0, 20.4013, 2.00935, 20.1061, 3.99935, 19.6173, 5.95084, 18.9395, 7.84501, 18.0794, 9.66363, 17.0451, 11.3892, 15.8467, 13.0051, 14.4957, 14.4957, 13.0051, 15.8467, 11.3892, 17.0451, 9.66363, 18.0794, 7.84501, 18.9395, 5.95084, 19.6173, 3.99935, 20.1061, 2.00935, 20.4013, 1.25526e-15, 20.5, -2.00935, 20.4013, -3.99935, 20.1061, -5.95084, 19.6173, -7.84501, 18.9395, -9.66363, 18.0794, -11.3892, 17.0451, -13.0051, 15.8467, -14.4957, 14.4957, -15.8467, 13.0051, -17.0451, 11.3892, -18.0794, 9.66363, -18.9395, 7.84501, -19.6173, 5.95084, -20.1061, 3.99935, -20.4013, 2.00935, -20.5, 2.51053e-15, -20.4013, -2.00935, -20.1061, -3.99935, -19.6173, -5.95084, -18.9395, -7.84501, -18.0794, -9.66363, -17.0451, -11.3892, -15.8467, -13.0051, -14.4957, -14.4957, -13.0051, -15.8467, -11.3892, -17.0451, -9.66363, -18.0794, -7.84501, -18.9395, -5.95084, -19.6173, -3.99935, -20.1061, -2.00935, -20.4013, -3.76579e-15, -20.5, 2.00935, -20.4013, 3.99935, -20.1061, 5.95084, -19.6173, 7.84501, -18.9395, 9.66363, -18.0794, 11.3892, -17.0451, 13.0051, -15.8467, 14.4957, -14.4957, 15.8467, -13.0051, 17.0451, -11.3892, 18.0794, -9.66363, 18.9395, -7.84501, 19.6173, -5.95084, 20.1061, -3.99935, 20.4013, -2.00935, 20.5, -5.02105e-15)
 width = 1
-default_color = Color(0.30, 0.40, 0.47, 1)
+default_color = Color(0.37, 0.46, 0.58, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4192,7 +4487,7 @@ theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 
 [node name="UpperCenter" type="StaticBody2D" parent="Pins"]
-position = Vector2(225, 340)
+position = Vector2(228, 344)
 physics_material_override = ExtResource("pinmat")
 metadata/pin = 2
 
@@ -4211,7 +4506,7 @@ antialiased = true
 [node name="Rim" type="Line2D" parent="Pins/UpperCenter"]
 points = PackedVector2Array(20.5, 0, 20.4013, 2.00935, 20.1061, 3.99935, 19.6173, 5.95084, 18.9395, 7.84501, 18.0794, 9.66363, 17.0451, 11.3892, 15.8467, 13.0051, 14.4957, 14.4957, 13.0051, 15.8467, 11.3892, 17.0451, 9.66363, 18.0794, 7.84501, 18.9395, 5.95084, 19.6173, 3.99935, 20.1061, 2.00935, 20.4013, 1.25526e-15, 20.5, -2.00935, 20.4013, -3.99935, 20.1061, -5.95084, 19.6173, -7.84501, 18.9395, -9.66363, 18.0794, -11.3892, 17.0451, -13.0051, 15.8467, -14.4957, 14.4957, -15.8467, 13.0051, -17.0451, 11.3892, -18.0794, 9.66363, -18.9395, 7.84501, -19.6173, 5.95084, -20.1061, 3.99935, -20.4013, 2.00935, -20.5, 2.51053e-15, -20.4013, -2.00935, -20.1061, -3.99935, -19.6173, -5.95084, -18.9395, -7.84501, -18.0794, -9.66363, -17.0451, -11.3892, -15.8467, -13.0051, -14.4957, -14.4957, -13.0051, -15.8467, -11.3892, -17.0451, -9.66363, -18.0794, -7.84501, -18.9395, -5.95084, -19.6173, -3.99935, -20.1061, -2.00935, -20.4013, -3.76579e-15, -20.5, 2.00935, -20.4013, 3.99935, -20.1061, 5.95084, -19.6173, 7.84501, -18.9395, 9.66363, -18.0794, 11.3892, -17.0451, 13.0051, -15.8467, 14.4957, -14.4957, 15.8467, -13.0051, 17.0451, -11.3892, 18.0794, -9.66363, 18.9395, -7.84501, 19.6173, -5.95084, 20.1061, -3.99935, 20.4013, -2.00935, 20.5, -5.02105e-15)
 width = 1
-default_color = Color(0.30, 0.40, 0.47, 1)
+default_color = Color(0.37, 0.46, 0.58, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4242,7 +4537,7 @@ theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 
 [node name="LowerCenter" type="StaticBody2D" parent="Pins"]
-position = Vector2(225, 602)
+position = Vector2(228, 578)
 physics_material_override = ExtResource("pinmat")
 metadata/pin = 3
 
@@ -4261,7 +4556,7 @@ antialiased = true
 [node name="Rim" type="Line2D" parent="Pins/LowerCenter"]
 points = PackedVector2Array(20.5, 0, 20.4013, 2.00935, 20.1061, 3.99935, 19.6173, 5.95084, 18.9395, 7.84501, 18.0794, 9.66363, 17.0451, 11.3892, 15.8467, 13.0051, 14.4957, 14.4957, 13.0051, 15.8467, 11.3892, 17.0451, 9.66363, 18.0794, 7.84501, 18.9395, 5.95084, 19.6173, 3.99935, 20.1061, 2.00935, 20.4013, 1.25526e-15, 20.5, -2.00935, 20.4013, -3.99935, 20.1061, -5.95084, 19.6173, -7.84501, 18.9395, -9.66363, 18.0794, -11.3892, 17.0451, -13.0051, 15.8467, -14.4957, 14.4957, -15.8467, 13.0051, -17.0451, 11.3892, -18.0794, 9.66363, -18.9395, 7.84501, -19.6173, 5.95084, -20.1061, 3.99935, -20.4013, 2.00935, -20.5, 2.51053e-15, -20.4013, -2.00935, -20.1061, -3.99935, -19.6173, -5.95084, -18.9395, -7.84501, -18.0794, -9.66363, -17.0451, -11.3892, -15.8467, -13.0051, -14.4957, -14.4957, -13.0051, -15.8467, -11.3892, -17.0451, -9.66363, -18.0794, -7.84501, -18.9395, -5.95084, -19.6173, -3.99935, -20.1061, -2.00935, -20.4013, -3.76579e-15, -20.5, 2.00935, -20.4013, 3.99935, -20.1061, 5.95084, -19.6173, 7.84501, -18.9395, 9.66363, -18.0794, 11.3892, -17.0451, 13.0051, -15.8467, 14.4957, -14.4957, 15.8467, -13.0051, 17.0451, -11.3892, 18.0794, -9.66363, 18.9395, -7.84501, 19.6173, -5.95084, 20.1061, -3.99935, 20.4013, -2.00935, 20.5, -5.02105e-15)
 width = 1
-default_color = Color(0.30, 0.40, 0.47, 1)
+default_color = Color(0.37, 0.46, 0.58, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4295,8 +4590,8 @@ horizontal_alignment = 1
 
 
 [node name="UpperLeft" type="StaticBody2D" parent="BouncePads"]
-position = Vector2(117, 335)
-rotation = 0.6171913915403622
+position = Vector2(131, 350)
+rotation = 0.722414
 physics_material_override = ExtResource("padmat")
 script = ExtResource("padscript")
 
@@ -4316,7 +4611,7 @@ antialiased = true
 [node name="Steel" type="Line2D" parent="BouncePads/UpperLeft"]
 points = PackedVector2Array(-38.0132, 0, 38.0132, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4334,7 +4629,7 @@ antialiased = true
 [node name="Face" type="Line2D" parent="BouncePads/UpperLeft"]
 points = PackedVector2Array(-38.0132, -3, 38.0132, -3)
 width = 3
-default_color = Color(0.73, 0.48, 1, 1)
+default_color = Color(0.72, 0.47, 1, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4350,8 +4645,8 @@ joint_mode = 2
 antialiased = true
 
 [node name="UpperRight" type="StaticBody2D" parent="BouncePads"]
-position = Vector2(333, 335)
-rotation = -0.6171913915403622
+position = Vector2(333, 348)
+rotation = -0.722414
 physics_material_override = ExtResource("padmat")
 script = ExtResource("padscript")
 
@@ -4371,7 +4666,7 @@ antialiased = true
 [node name="Steel" type="Line2D" parent="BouncePads/UpperRight"]
 points = PackedVector2Array(-38.0132, 0, 38.0132, 0)
 width = 6
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4389,7 +4684,7 @@ antialiased = true
 [node name="Face" type="Line2D" parent="BouncePads/UpperRight"]
 points = PackedVector2Array(-38.0132, -3, 38.0132, -3)
 width = 3
-default_color = Color(0.73, 0.48, 1, 1)
+default_color = Color(0.72, 0.47, 1, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4405,7 +4700,7 @@ joint_mode = 2
 antialiased = true
 
 [node name="Diamond" type="StaticBody2D" parent="BouncePads"]
-position = Vector2(225, 440)
+position = Vector2(228, 445)
 physics_material_override = ExtResource("padmat")
 script = ExtResource("padscript")
 all_sides = true
@@ -4415,7 +4710,7 @@ polygon = PackedVector2Array(0, -16, 50, 0, 0, 16, -50, 0)
 
 [node name="Fill" type="Polygon2D" parent="BouncePads/Diamond"]
 polygon = PackedVector2Array(0, -16, 50, 0, 0, 16, -50, 0)
-color = Color(0.23, 0.13, 0.36, 1)
+color = Color(0.20, 0.12, 0.33, 1)
 
 [node name="Glow" type="Line2D" parent="BouncePads/Diamond"]
 points = PackedVector2Array(0, -16, 50, 0, 0, 16, -50, 0, 0, -16)
@@ -4448,15 +4743,15 @@ antialiased = true
 
 
 [node name="Left" type="Node2D" parent="Slingshots"]
-position = Vector2(104, 581)
+position = Vector2(104, 557)
 
 [node name="Fill" type="Polygon2D" parent="Slingshots/Left"]
-polygon = PackedVector2Array(0, 0, 0, 92, 65, 108)
+polygon = PackedVector2Array(0, 0, 0, 101, 65, 117)
 color = Color(0.13, 0.10, 0.22, 1)
 
 [node name="PassiveOuter" type="StaticBody2D" parent="Slingshots/Left"]
-position = Vector2(0, 46)
-rotation = 1.5707963267948966
+position = Vector2(0, 50.5)
+rotation = 1.57079632679
 physics_material_override = ExtResource("railmat")
 
 [node name="Collision" type="CollisionShape2D" parent="Slingshots/Left/PassiveOuter"]
@@ -4464,7 +4759,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail102")
 
 [node name="Shadow" type="Line2D" parent="Slingshots/Left/PassiveOuter"]
-points = PackedVector2Array(-46, 0, 46, 0)
+points = PackedVector2Array(-50.5, 0, 50.5, 0)
 width = 12
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4473,26 +4768,26 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Slingshots/Left/PassiveOuter"]
-points = PackedVector2Array(-46, 0, 46, 0)
+points = PackedVector2Array(-50.5, 0, 50.5, 0)
 width = 5
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Slingshots/Left/PassiveOuter"]
-points = PackedVector2Array(-46, 0, 46, 0)
+points = PackedVector2Array(-50.5, 0, 50.5, 0)
 width = 1.4000000000000001
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.34, 0.42, 0.54, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="PassiveBottom" type="StaticBody2D" parent="Slingshots/Left"]
-position = Vector2(32.5, 100)
-rotation = 0.24135549057540379
+position = Vector2(32.5, 109)
+rotation = 0.241355490575
 physics_material_override = ExtResource("railmat")
 
 [node name="Collision" type="CollisionShape2D" parent="Slingshots/Left/PassiveBottom"]
@@ -4511,7 +4806,7 @@ antialiased = true
 [node name="Steel" type="Line2D" parent="Slingshots/Left/PassiveBottom"]
 points = PackedVector2Array(-33.4701, 0, 33.4701, 0)
 width = 5
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4520,15 +4815,15 @@ antialiased = true
 [node name="Highlight" type="Line2D" parent="Slingshots/Left/PassiveBottom"]
 points = PackedVector2Array(-33.4701, 0, 33.4701, 0)
 width = 1.4000000000000001
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.34, 0.42, 0.54, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="ActiveFace" type="StaticBody2D" parent="Slingshots/Left"]
-position = Vector2(32.5, 54)
-rotation = 1.0290162831461167
+position = Vector2(32.5, 58.5)
+rotation = 1.0636978224
 physics_material_override = ExtResource("padmat")
 script = ExtResource("padscript")
 
@@ -4537,7 +4832,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail104")
 
 [node name="Shadow" type="Line2D" parent="Slingshots/Left/ActiveFace"]
-points = PackedVector2Array(-63.0258, 0, 63.0258, 0)
+points = PackedVector2Array(-66.9216, 0, 66.9216, 0)
 width = 11
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4546,16 +4841,16 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Slingshots/Left/ActiveFace"]
-points = PackedVector2Array(-63.0258, 0, 63.0258, 0)
+points = PackedVector2Array(-66.9216, 0, 66.9216, 0)
 width = 4
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Glow" type="Line2D" parent="Slingshots/Left/ActiveFace"]
-points = PackedVector2Array(-63.0258, -2, 63.0258, -2)
+points = PackedVector2Array(-66.9216, -2, 66.9216, -2)
 width = 9
 default_color = Color(0.61, 0.29, 1, 0.14)
 begin_cap_mode = 2
@@ -4564,16 +4859,16 @@ joint_mode = 2
 antialiased = true
 
 [node name="Face" type="Line2D" parent="Slingshots/Left/ActiveFace"]
-points = PackedVector2Array(-63.0258, -2, 63.0258, -2)
+points = PackedVector2Array(-66.9216, -2, 66.9216, -2)
 width = 3
-default_color = Color(0.73, 0.48, 1, 1)
+default_color = Color(0.72, 0.47, 1, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Slingshots/Left/ActiveFace"]
-points = PackedVector2Array(-63.0258, -2, 63.0258, -2)
+points = PackedVector2Array(-66.9216, -2, 66.9216, -2)
 width = 1
 default_color = Color(0.95, 0.79, 1, 1)
 begin_cap_mode = 2
@@ -4582,15 +4877,15 @@ joint_mode = 2
 antialiased = true
 
 [node name="Right" type="Node2D" parent="Slingshots"]
-position = Vector2(346, 581)
+position = Vector2(346, 557)
 
 [node name="Fill" type="Polygon2D" parent="Slingshots/Right"]
-polygon = PackedVector2Array(0, 0, 0, 92, -65, 108)
+polygon = PackedVector2Array(0, 0, 0, 101, -65, 117)
 color = Color(0.13, 0.10, 0.22, 1)
 
 [node name="PassiveOuter" type="StaticBody2D" parent="Slingshots/Right"]
-position = Vector2(0, 46)
-rotation = 1.5707963267948966
+position = Vector2(0, 50.5)
+rotation = 1.57079632679
 physics_material_override = ExtResource("railmat")
 
 [node name="Collision" type="CollisionShape2D" parent="Slingshots/Right/PassiveOuter"]
@@ -4598,7 +4893,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail105")
 
 [node name="Shadow" type="Line2D" parent="Slingshots/Right/PassiveOuter"]
-points = PackedVector2Array(-46, 0, 46, 0)
+points = PackedVector2Array(-50.5, 0, 50.5, 0)
 width = 12
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4607,26 +4902,26 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Slingshots/Right/PassiveOuter"]
-points = PackedVector2Array(-46, 0, 46, 0)
+points = PackedVector2Array(-50.5, 0, 50.5, 0)
 width = 5
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Slingshots/Right/PassiveOuter"]
-points = PackedVector2Array(-46, 0, 46, 0)
+points = PackedVector2Array(-50.5, 0, 50.5, 0)
 width = 1.4000000000000001
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.34, 0.42, 0.54, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="PassiveBottom" type="StaticBody2D" parent="Slingshots/Right"]
-position = Vector2(-32.5, 100)
-rotation = 2.9002371630143893
+position = Vector2(-32.5, 109)
+rotation = 2.90023716301
 physics_material_override = ExtResource("railmat")
 
 [node name="Collision" type="CollisionShape2D" parent="Slingshots/Right/PassiveBottom"]
@@ -4645,7 +4940,7 @@ antialiased = true
 [node name="Steel" type="Line2D" parent="Slingshots/Right/PassiveBottom"]
 points = PackedVector2Array(-33.4701, 0, 33.4701, 0)
 width = 5
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
@@ -4654,15 +4949,15 @@ antialiased = true
 [node name="Highlight" type="Line2D" parent="Slingshots/Right/PassiveBottom"]
 points = PackedVector2Array(-33.4701, 0, 33.4701, 0)
 width = 1.4000000000000001
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.34, 0.42, 0.54, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="ActiveFace" type="StaticBody2D" parent="Slingshots/Right"]
-position = Vector2(-32.5, 54)
-rotation = -1.0290162831461167
+position = Vector2(-32.5, 58.5)
+rotation = -1.0636978224
 physics_material_override = ExtResource("padmat")
 script = ExtResource("padscript")
 
@@ -4671,7 +4966,7 @@ rotation = 1.5707963267948966
 shape = SubResource("rail107")
 
 [node name="Shadow" type="Line2D" parent="Slingshots/Right/ActiveFace"]
-points = PackedVector2Array(-63.0258, 0, 63.0258, 0)
+points = PackedVector2Array(-66.9216, 0, 66.9216, 0)
 width = 11
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4680,16 +4975,16 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Slingshots/Right/ActiveFace"]
-points = PackedVector2Array(-63.0258, 0, 63.0258, 0)
+points = PackedVector2Array(-66.9216, 0, 66.9216, 0)
 width = 4
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.10, 0.14, 0.22, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Glow" type="Line2D" parent="Slingshots/Right/ActiveFace"]
-points = PackedVector2Array(-63.0258, -2, 63.0258, -2)
+points = PackedVector2Array(-66.9216, -2, 66.9216, -2)
 width = 9
 default_color = Color(0.61, 0.29, 1, 0.14)
 begin_cap_mode = 2
@@ -4698,16 +4993,16 @@ joint_mode = 2
 antialiased = true
 
 [node name="Face" type="Line2D" parent="Slingshots/Right/ActiveFace"]
-points = PackedVector2Array(-63.0258, -2, 63.0258, -2)
+points = PackedVector2Array(-66.9216, -2, 66.9216, -2)
 width = 3
-default_color = Color(0.73, 0.48, 1, 1)
+default_color = Color(0.72, 0.47, 1, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Slingshots/Right/ActiveFace"]
-points = PackedVector2Array(-63.0258, -2, 63.0258, -2)
+points = PackedVector2Array(-66.9216, -2, 66.9216, -2)
 width = 1
 default_color = Color(0.95, 0.79, 1, 1)
 begin_cap_mode = 2
@@ -4719,10 +5014,10 @@ antialiased = true
 
 
 [node name="Left" type="Node2D" parent="Inlanes"]
-position = Vector2(65, 580)
+position = Vector2(71, 557)
 
 [node name="Vertical" type="StaticBody2D" parent="Inlanes/Left"]
-position = Vector2(0, 63)
+position = Vector2(0, 66)
 rotation = 1.5707963267948966
 physics_material_override = ExtResource("railmat")
 
@@ -4731,7 +5026,8 @@ rotation = 1.5707963267948966
 shape = SubResource("rail108")
 
 [node name="Shadow" type="Line2D" parent="Inlanes/Left/Vertical"]
-points = PackedVector2Array(-63, 0, 63, 0)
+z_index = -3
+points = PackedVector2Array(-66, 0, 66, 0)
 width = 18
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4740,26 +5036,28 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Inlanes/Left/Vertical"]
-points = PackedVector2Array(-63, 0, 63, 0)
+z_index = -2
+points = PackedVector2Array(-66, 0, 66, 0)
 width = 11
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Inlanes/Left/Vertical"]
-points = PackedVector2Array(-63, 0, 63, 0)
+z_index = -1
+points = PackedVector2Array(-66, 0, 66, 0)
 width = 3.08
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Guide" type="StaticBody2D" parent="Inlanes/Left"]
-position = Vector2(43, 133.5)
-rotation = 0.17268149161800542
+position = Vector2(40, 152)
+rotation = 0.4636476090008061
 physics_material_override = ExtResource("railmat")
 
 [node name="Collision" type="CollisionShape2D" parent="Inlanes/Left/Guide"]
@@ -4767,7 +5065,8 @@ rotation = 1.5707963267948966
 shape = SubResource("rail109")
 
 [node name="Shadow" type="Line2D" parent="Inlanes/Left/Guide"]
-points = PackedVector2Array(-43.6492, 0, 43.6492, 0)
+z_index = -3
+points = PackedVector2Array(-44.7214, 0, 44.7214, 0)
 width = 18
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4776,28 +5075,30 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Inlanes/Left/Guide"]
-points = PackedVector2Array(-43.6492, 0, 43.6492, 0)
+z_index = -2
+points = PackedVector2Array(-44.7214, 0, 44.7214, 0)
 width = 11
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Inlanes/Left/Guide"]
-points = PackedVector2Array(-43.6492, 0, 43.6492, 0)
+z_index = -1
+points = PackedVector2Array(-44.7214, 0, 44.7214, 0)
 width = 3.08
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Right" type="Node2D" parent="Inlanes"]
-position = Vector2(385, 580)
+position = Vector2(379, 557)
 
 [node name="Vertical" type="StaticBody2D" parent="Inlanes/Right"]
-position = Vector2(0, 63)
+position = Vector2(0, 66)
 rotation = 1.5707963267948966
 physics_material_override = ExtResource("railmat")
 
@@ -4806,7 +5107,8 @@ rotation = 1.5707963267948966
 shape = SubResource("rail110")
 
 [node name="Shadow" type="Line2D" parent="Inlanes/Right/Vertical"]
-points = PackedVector2Array(-63, 0, 63, 0)
+z_index = -3
+points = PackedVector2Array(-66, 0, 66, 0)
 width = 18
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4815,26 +5117,28 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Inlanes/Right/Vertical"]
-points = PackedVector2Array(-63, 0, 63, 0)
+z_index = -2
+points = PackedVector2Array(-66, 0, 66, 0)
 width = 11
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Inlanes/Right/Vertical"]
-points = PackedVector2Array(-63, 0, 63, 0)
+z_index = -1
+points = PackedVector2Array(-66, 0, 66, 0)
 width = 3.08
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Guide" type="StaticBody2D" parent="Inlanes/Right"]
-position = Vector2(-43, 133.5)
-rotation = 2.968911161971788
+position = Vector2(-40, 152)
+rotation = 2.677945044588987
 physics_material_override = ExtResource("railmat")
 
 [node name="Collision" type="CollisionShape2D" parent="Inlanes/Right/Guide"]
@@ -4842,7 +5146,8 @@ rotation = 1.5707963267948966
 shape = SubResource("rail111")
 
 [node name="Shadow" type="Line2D" parent="Inlanes/Right/Guide"]
-points = PackedVector2Array(-43.6492, 0, 43.6492, 0)
+z_index = -3
+points = PackedVector2Array(-44.7214, 0, 44.7214, 0)
 width = 18
 default_color = Color(0.005, 0.012, 0.025, 0.65)
 begin_cap_mode = 2
@@ -4851,25 +5156,27 @@ joint_mode = 2
 antialiased = true
 
 [node name="Steel" type="Line2D" parent="Inlanes/Right/Guide"]
-points = PackedVector2Array(-43.6492, 0, 43.6492, 0)
+z_index = -2
+points = PackedVector2Array(-44.7214, 0, 44.7214, 0)
 width = 11
-default_color = Color(0.20, 0.27, 0.34, 1)
+default_color = Color(0.23, 0.32, 0.43, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="Highlight" type="Line2D" parent="Inlanes/Right/Guide"]
-points = PackedVector2Array(-43.6492, 0, 43.6492, 0)
+z_index = -1
+points = PackedVector2Array(-44.7214, 0, 44.7214, 0)
 width = 3.08
-default_color = Color(0.65, 0.71, 0.74, 1)
+default_color = Color(0.52, 0.64, 0.77, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 joint_mode = 2
 antialiased = true
 
 [node name="LeftFlipper" type="AnimatableBody2D" parent="."]
-position = Vector2(151, 721)
+position = Vector2(151, 729)
 script = ExtResource("flipper")
 side = 1
 
@@ -4878,14 +5185,8 @@ position = Vector2(28.5, 0)
 rotation = 1.5707963267948966
 shape = SubResource("flipper_left")
 
-[node name="Sprite" type="Sprite2D" parent="LeftFlipper"]
-position = Vector2(28.5, 0)
-scale = Vector2(0.23476, 0.2222)
-texture = ExtResource("flippertex")
-modulate = Color(1, 0.35, 0.39, 1)
-
 [node name="RightFlipper" type="AnimatableBody2D" parent="."]
-position = Vector2(299, 721)
+position = Vector2(299, 729)
 script = ExtResource("flipper")
 side = -1
 
@@ -4893,12 +5194,6 @@ side = -1
 position = Vector2(-28.5, 0)
 rotation = 1.5707963267948966
 shape = SubResource("flipper_right")
-
-[node name="Sprite" type="Sprite2D" parent="RightFlipper"]
-position = Vector2(-28.5, 0)
-scale = Vector2(0.23476, 0.2222)
-texture = ExtResource("flippertex")
-modulate = Color(1, 0.35, 0.39, 1)
 
 [node name="Launcher" type="Node2D" parent="."]
 position = Vector2(441, 746)

@@ -50,6 +50,15 @@ func run() -> void:
 	launch(game, 1.7)
 	check(game.ball.linear_velocity.length() > weak_speed * 2, "A longer pull changes launch speed.")
 	check(game.pin_levels.size() == 4 and game.pin_levels.all(func(level): return level == 1), "All four pins start at level 1.")
+	check(game.pins[2].name == &"UpperCenter" and game.is_golden(2), "The upper center pin is gold.")
+	for index in 4:
+		var gold: bool = index == 2
+		check(game.is_golden(index) == gold, "Only UpperCenter uses gold scoring.")
+		for level in range(1, 10):
+			var points := 100 + 50 * (level - 1) if gold else 50 + 25 * (level - 1)
+			var skin: AtlasTexture = game.pin_texture(index, level)
+			var tier := ceili(level / 3.0)
+			check(game.pin_points(index, level) == points and skin.resource_path.ends_with("_%s.tres" % tier), "Pin %s level %s uses the correct points and skin." % [index, level])
 	game.credit = 1000
 	check(not game.buy_pin(0) and not game.buy_extra_life(), "Purchases must be blocked during play.")
 	game.lose_ball()
@@ -64,6 +73,8 @@ func run() -> void:
 	game.credit = 2000
 	for purchase in 3:
 		check(game.buy_extra_life(), "Three extra lives can be purchased per run.")
+		check(game.menu.extra_life_button.text.contains("%s / 3" % (purchase + 1)), "The extra-life button shows the current purchase count.")
+		check(game.get_node("HUD").values[3].text == str(game.balls_left), "The HUD shows the new ball count immediately.")
 	check(game.balls_left == 5 and game.credit == 500 and game.extra_lives_bought == 3, "Extra lives cost 500 each and increase the remaining balls.")
 	check(not game.buy_extra_life(), "A fourth extra life is rejected even with enough credit.")
 	game.start_round()
@@ -149,6 +160,10 @@ func run() -> void:
 		check(game.balls_left == 2, "Entering the configured drain ends a round.")
 	check(game.get_node("Table/BouncePads").get_child_count() == 3, "The scene contains two upper pads and a diamond.")
 	check(game.get_node("Table/Slingshots").get_child_count() == 2, "Both lower slingshots are present.")
+	for pad_path in ["BouncePads/UpperLeft", "BouncePads/UpperRight", "Slingshots/Left/ActiveFace", "Slingshots/Right/ActiveFace"]:
+		var pad = game.get_node("Table/" + pad_path)
+		var front: Vector2 = Vector2.UP.rotated(pad.global_rotation)
+		check(pad.accepts_normal(front) and not pad.accepts_normal(-front), "%s kicks only on the purple face." % pad_path)
 	if game.phase == game.Phase.PLAY:
 		game.lose_ball()
 	game.new_run()
@@ -170,6 +185,5 @@ func run() -> void:
 	await process_frame
 	DirAccess.remove_absolute("res://.godot/test_run_highscore.cfg")
 	if failures == 0:
-		print("Steel Ballz Run lifecycle, persistence and input checks passed")
+		print("Steel Ballz Run lifecycle, pin tiers, pad direction, persistence and input checks passed")
 	quit(1 if failures else 0)
-

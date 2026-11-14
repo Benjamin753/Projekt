@@ -1,3 +1,4 @@
+@tool
 extends AnimatableBody2D
 
 const BASE_LENGTH := 57.0
@@ -7,7 +8,6 @@ const RAISED_ANGLE := -0.47
 @export var side := 1.0
 var held := 0.0
 var discharge_seconds := 3.0
-var animation_time := 0.0
 var strike_time := 0.0
 var strike_power := 1.0
 var pressed := false
@@ -16,22 +16,21 @@ var length := BASE_LENGTH
 var swing_velocity := 0.0
 var base_rotation := 0.0
 @onready var collider: CollisionShape2D = $Collision
-@onready var sprite: Sprite2D = $Sprite
 
 static func charge_multiplier(seconds: float) -> float:
 	return 1.0 + clampf(seconds / 2.0, 0.0, 1.0)
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		set_physics_process(false)
+		return
 	base_rotation = rotation
 	sync_to_physics = false
-	sprite.flip_h = side > 0.0
 	set_length_level(0)
 	rotation = base_rotation + REST_ANGLE * side
 
 func set_length_level(level: int) -> void:
 	length = BASE_LENGTH * (1.0 + 0.05 * level)
-	sprite.position.x = side * length / 2.0
-	sprite.scale = Vector2((length + 20.0) / 328.0, 20.0 / 90.0)
 	var shape := collider.shape as CapsuleShape2D
 	shape.radius = 8.0
 	shape.height = length + 16.0
@@ -58,7 +57,6 @@ func reset() -> void:
 	rotation = base_rotation + REST_ANGLE * side
 
 func _physics_process(delta: float) -> void:
-	animation_time += delta
 	if pressed:
 		held = minf(held + delta, 2.0)
 	else:
@@ -87,15 +85,13 @@ func strike_boost(world_contact: Vector2, normal: Vector2) -> Vector2:
 func _draw() -> void:
 	var tip := Vector2(length * side, 0.0)
 	var charge := held / 2.0
-	var pulse := 0.5 + 0.5 * sin(animation_time * (4.0 + charge * 6.0))
-	if charge > 0.0:
-		var glow := Color("#ffbe66")
-		glow.a = charge * (0.12 + 0.1 * pulse)
-		draw_line(Vector2.ZERO, tip, glow, 23.0 + 6.0 * pulse * charge, true)
-	sprite.modulate = Color("#ff5964").lerp(Color("#ffbe66"), charge)
-	if charge > 0.0:
-		for index in 3:
-			var progress := fposmod(animation_time * 0.55 + index / 3.0, 1.0)
-			var spark := Color("#fff4d9")
-			spark.a = charge * sin(progress * PI)
-			draw_circle(tip * progress, 1.5 + charge, spark, true, -1.0, true)
+	var rubber := Color("#d94761").lerp(Color("#ffb75e"), charge)
+	draw_line(Vector2(1, 2), tip + Vector2(1, 2), Color("#090e17"), 20, true)
+	draw_line(Vector2.ZERO, tip, rubber.darkened(0.33), 15, true)
+	draw_circle(tip, 7.5, rubber.darkened(0.33), true, -1.0, true)
+	var highlight_tip := tip + Vector2(0, -1.5)
+	draw_line(Vector2(0, -1.5), highlight_tip, rubber, 11, true)
+	draw_circle(highlight_tip, 5.5, rubber, true, -1.0, true)
+	draw_line(Vector2(5 * side, -4), tip * 0.92 + Vector2(0, -4), rubber.lightened(0.34), 2, true)
+	draw_circle(Vector2.ZERO, 8.5, rubber.darkened(0.33), true, -1.0, true)
+	draw_circle(Vector2.ZERO, 4.0, Color("#ffd3bc").lerp(Color("#fff0c4"), charge), true, -1.0, true)

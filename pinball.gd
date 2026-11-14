@@ -2,7 +2,6 @@ extends Node2D
 
 const BALL_SCENE = preload("res://ball.tscn")
 const SPRING_PULL_TIME := 2.0
-const SPRING_TRAVEL := 20.0
 const SPRING_MAX_SPEED := 1450.0
 const MULTIPLIER_DURATION := 10.0
 
@@ -14,6 +13,8 @@ const MAX_EXTRA_LIVES := 3
 const PIN_COSTS := [300, 500, 750, 1050, 1400, 1800, 2250, 2750]
 const GOLDEN_PIN_COSTS := [400, 600, 850, 1150, 1500, 1900, 2350, 2850]
 const PIN_COLORS := ["green", "yellow", "blue", "green"]
+const PIN_NODES := ["UpperLeft", "UpperRight", "UpperCenter", "LowerCenter"]
+const PIN_ACCENTS := [Color("#62e0bc"), Color("#8acaf1"), Color("#ffc668"), Color("#becade")]
 const PIN_NAMES := ["Oben links", "Oben rechts", "Oben Mitte", "Unten Mitte"]
 const UPGRADES := {
 	"turbo": ["Turbo-Kugel", "+25 % bei schnellen Treffern", "+50 % bei schnellen Treffern", "+100 % bei schnellen Treffern"],
@@ -21,8 +22,6 @@ const UPGRADES := {
 	"length": ["Lange Flipper", "5 % längere Flipper", "10 % längere Flipper", "15 % längere Flipper"],
 	"save": ["Ballrettung", "Beide Ziel-Pins: Schutz für 6 s", "Beide Ziel-Pins: Schutz für 12 s", "Beide Ziel-Pins: Schutz bis zur Rettung"],
 }
-const INK := Color("#0a1624")
-const CYAN := Color("#75e4e8")
 const GOLD := Color("#ffbe66")
 const TEXT := Color("#e5f4f8")
 
@@ -37,9 +36,10 @@ var extra_lives_bought := 0
 @export var high_score_path := "user://highscore.cfg"
 var high_score_save_error := OK
 var drain_pending := false
-var pin_levels: Array[int] = [0, 0, 0, 0, 0, 0]
-var pin_hits: Array[int] = [0, 0, 0, 0, 0, 0]
-var flashes: Array[float] = [0, 0, 0, 0, 0, 0]
+var pins: Array[StaticBody2D] = []
+var pin_levels: Array[int] = []
+var pin_hits: Array[int] = []
+var flashes: Array[float] = []
 var upgrade_levels := {"turbo": 0, "precision": 0, "length": 0, "save": 0}
 var offers: Array = []
 var flippers: Array[Flipper] = []
@@ -49,19 +49,20 @@ var ball: RigidBody2D
 var save_targets := 0
 var save_time := 0.0
 var save_used := false
-@onready var menu: Control = $ShopLayer/Shop
-var font := ThemeDB.fallback_font
 
 var spring_held := false
 var spring_charge := 0.0
 var spring_touch := -1
 var multiplier_remaining := 0.0
 @onready var return_sensor: CollisionShape2D = $Table/Launcher/ReturnArea/Collision
+@onready var menu: Control = $ShopLayer/Shop
 @onready var multiplier_label: Label = $HUD/Multiplier
 
 func _ready() -> void:
 	load_high_score()
-	pin_levels.resize($Table/Pins.get_child_count())
+	for node_name in PIN_NODES:
+		pins.append($Table/Pins.get_node(node_name))
+	pin_levels.resize(pins.size())
 	pin_levels.fill(1)
 	pin_hits.resize(pin_levels.size())
 	flashes.resize(pin_levels.size())
@@ -201,7 +202,7 @@ func on_ball_contact(body: Node, source: RigidBody2D) -> void:
 	score += points
 	credit += points
 	update_high_score()
-	$Table/Pins.get_child(number).get_node("Points").text = "+%s" % points
+	pins[number].get_node("Points").text = "+%s" % points
 	if upgrade_levels["save"] > 0 and not save_used:
 		if number == 1:
 			save_targets |= 1
@@ -225,8 +226,8 @@ func pin_texture(index: int, level: int) -> AtlasTexture:
 	return load("res://assets/pins/%s_%s.tres" % [PIN_COLORS[index], design_level])
 
 func update_pin_skin(index: int) -> void:
-	var pin := $Table/Pins.get_child(index)
-	pin.get_node("Sprite").set_skin(pin_texture(index, pin_levels[index]), pin_points(index, pin_levels[index]))
+	var level := pin_levels[index]
+	pins[index].get_node("Sprite").set_skin(pin_texture(index, level), pin_points(index, level), PIN_ACCENTS[index])
 
 func _input(event: InputEvent) -> void:
 	if phase == Phase.START:
@@ -387,7 +388,7 @@ func _process(_delta: float) -> void:
 			zone.get_node("Label").modulate = GOLD if active else TEXT
 			zone.get_node("Sprite").modulate.a = 0.38 if active else 0.18
 	for index in pin_levels.size():
-		var pin := $Table/Pins.get_child(index)
+		var pin := pins[index]
 		pin.modulate = Color.WHITE.lerp(Color(1.7, 1.7, 1.7), flashes[index] / 0.45)
 		var points: Label = pin.get_node("Points")
 		points.visible = flashes[index] > 0.0
@@ -396,5 +397,4 @@ func _process(_delta: float) -> void:
 func update_menu() -> void:
 	menu.refresh()
 	menu.show()
-	queue_redraw()
-
+	$HUD.refresh()
