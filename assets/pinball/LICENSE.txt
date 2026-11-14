@@ -1,0 +1,6 @@
+2D pinball sprites
+Author: rounddr
+Source: https://opengameart.org/content/2d-pinball-sprites
+License: CC0 1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+Original PNG files imported without modification. Scene nodes tint and scale them.

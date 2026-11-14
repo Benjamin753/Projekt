@@ -1,0 +1,1674 @@
+[gd_scene load_steps=95 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/pinball/flipper.png" id="flipper_texture"]
+
+[ext_resource type="Script" path="res://flipper.gd" id="flipper_script"]
+
+[ext_resource type="Texture2D" path="res://assets/pinball/wall_7.png" id="wall"]
+
+[ext_resource type="AtlasTexture" path="res://assets/pins/blue_1.tres" id="blue_pin"]
+[ext_resource type="AtlasTexture" path="res://assets/pins/green_1.tres" id="green_pin"]
+[ext_resource type="AtlasTexture" path="res://assets/pins/yellow_1.tres" id="yellow_pin"]
+[ext_resource type="Script" path="res://pin_skin.gd" id="pin_skin"]
+
+[ext_resource type="Texture2D" path="res://assets/pinball/square_1.png" id="floor"]
+
+[ext_resource type="Texture2D" path="res://assets/pinball/slingshot.png" id="pad"]
+
+[ext_resource type="PhysicsMaterial" path="res://assets/pinball/rail_material.tres" id="rail_material"]
+
+[ext_resource type="PhysicsMaterial" path="res://assets/pinball/pin_material.tres" id="pin_material"]
+
+[ext_resource type="PhysicsMaterial" path="res://assets/pinball/pad_material.tres" id="pad_material"]
+
+[ext_resource type="Script" path="res://bounce_pad.gd" id="pad_script"]
+
+[sub_resource type="CapsuleShape2D" id="s1"]
+radius = 4.0
+height = 370.0
+
+[sub_resource type="CapsuleShape2D" id="s2"]
+radius = 4.0
+height = 580.0
+
+[sub_resource type="CapsuleShape2D" id="s3"]
+radius = 4.0
+height = 580.0
+
+[sub_resource type="CapsuleShape2D" id="s4"]
+radius = 4.0
+height = 49.0
+
+[sub_resource type="CapsuleShape2D" id="s5"]
+radius = 4.0
+height = 135.20062892926276
+
+[sub_resource type="CapsuleShape2D" id="s6"]
+radius = 4.0
+height = 115.83784122468327
+
+[sub_resource type="CapsuleShape2D" id="s7"]
+radius = 4.0
+height = 25.397295821333977
+
+[sub_resource type="CapsuleShape2D" id="s8"]
+radius = 4.0
+height = 26.43260249519892
+
+[sub_resource type="CapsuleShape2D" id="s9"]
+radius = 4.0
+height = 28.25634690572253
+
+[sub_resource type="CapsuleShape2D" id="s10"]
+radius = 4.0
+height = 30.526326486564706
+
+[sub_resource type="CapsuleShape2D" id="s11"]
+radius = 4.0
+height = 32.93194435112251
+
+[sub_resource type="CapsuleShape2D" id="s12"]
+radius = 4.0
+height = 35.233133742816285
+
+[sub_resource type="CapsuleShape2D" id="s13"]
+radius = 4.0
+height = 37.25423110598335
+
+[sub_resource type="CapsuleShape2D" id="s14"]
+radius = 4.0
+height = 38.86949679888892
+
+[sub_resource type="CapsuleShape2D" id="s15"]
+radius = 4.0
+height = 39.99194567130262
+
+[sub_resource type="CapsuleShape2D" id="s16"]
+radius = 4.0
+height = 40.56653989429311
+
+[sub_resource type="CapsuleShape2D" id="s17"]
+radius = 4.0
+height = 40.56653989429308
+
+[sub_resource type="CapsuleShape2D" id="s18"]
+radius = 4.0
+height = 39.991945671302645
+
+[sub_resource type="CapsuleShape2D" id="s19"]
+radius = 4.0
+height = 38.869496798888946
+
+[sub_resource type="CapsuleShape2D" id="s20"]
+radius = 4.0
+height = 37.254231105983365
+
+[sub_resource type="CapsuleShape2D" id="s21"]
+radius = 4.0
+height = 35.233133742816236
+
+[sub_resource type="CapsuleShape2D" id="s22"]
+radius = 4.0
+height = 32.931944351122574
+
+[sub_resource type="CapsuleShape2D" id="s23"]
+radius = 4.0
+height = 30.526326486564685
+
+[sub_resource type="CapsuleShape2D" id="s24"]
+radius = 4.0
+height = 28.25634690572255
+
+[sub_resource type="CapsuleShape2D" id="s25"]
+radius = 4.0
+height = 26.432602495198886
+
+[sub_resource type="CapsuleShape2D" id="s26"]
+radius = 4.0
+height = 25.39729582133401
+
+[sub_resource type="CapsuleShape2D" id="s27"]
+radius = 4.0
+height = 17.654367897221984
+
+[sub_resource type="CapsuleShape2D" id="s28"]
+radius = 4.0
+height = 17.626078092621256
+
+[sub_resource type="CapsuleShape2D" id="s29"]
+radius = 4.0
+height = 17.569949314920304
+
+[sub_resource type="CapsuleShape2D" id="s30"]
+radius = 4.0
+height = 17.48688574894357
+
+[sub_resource type="CapsuleShape2D" id="s31"]
+radius = 4.0
+height = 17.378249856598778
+
+[sub_resource type="CapsuleShape2D" id="s32"]
+radius = 4.0
+height = 17.245869410551585
+
+[sub_resource type="CapsuleShape2D" id="s33"]
+radius = 4.0
+height = 17.092046062386604
+
+[sub_resource type="CapsuleShape2D" id="s34"]
+radius = 4.0
+height = 16.919564403620285
+
+[sub_resource type="CapsuleShape2D" id="s35"]
+radius = 4.0
+height = 16.731699742459316
+
+[sub_resource type="CapsuleShape2D" id="s36"]
+radius = 4.0
+height = 16.532221718445584
+
+[sub_resource type="CapsuleShape2D" id="s37"]
+radius = 4.0
+height = 16.325389327237787
+
+[sub_resource type="CapsuleShape2D" id="s38"]
+radius = 4.0
+height = 16.11593090842556
+
+[sub_resource type="CapsuleShape2D" id="s39"]
+radius = 4.0
+height = 15.909000300447008
+
+[sub_resource type="CapsuleShape2D" id="s40"]
+radius = 4.0
+height = 15.710098138301472
+
+[sub_resource type="CapsuleShape2D" id="s41"]
+radius = 4.0
+height = 15.524946095875116
+
+[sub_resource type="CapsuleShape2D" id="s42"]
+radius = 4.0
+height = 15.359303263897036
+
+[sub_resource type="CapsuleShape2D" id="s43"]
+radius = 4.0
+height = 15.218719671056096
+
+[sub_resource type="CapsuleShape2D" id="s44"]
+radius = 4.0
+height = 15.108233607068374
+
+[sub_resource type="CapsuleShape2D" id="s45"]
+radius = 4.0
+height = 15.03203636634199
+
+[sub_resource type="CapsuleShape2D" id="s46"]
+radius = 4.0
+height = 14.993146316779772
+
+[sub_resource type="CapsuleShape2D" id="s47"]
+radius = 4.0
+height = 14.993146316779772
+
+[sub_resource type="CapsuleShape2D" id="s48"]
+radius = 4.0
+height = 15.03203636634199
+
+[sub_resource type="CapsuleShape2D" id="s49"]
+radius = 4.0
+height = 15.108233607068339
+
+[sub_resource type="CapsuleShape2D" id="s50"]
+radius = 4.0
+height = 15.218719671056121
+
+[sub_resource type="CapsuleShape2D" id="s51"]
+radius = 4.0
+height = 15.359303263897022
+
+[sub_resource type="CapsuleShape2D" id="s52"]
+radius = 4.0
+height = 15.524946095875102
+
+[sub_resource type="CapsuleShape2D" id="s53"]
+radius = 4.0
+height = 15.710098138301483
+
+[sub_resource type="CapsuleShape2D" id="s54"]
+radius = 4.0
+height = 15.909000300447019
+
+[sub_resource type="CapsuleShape2D" id="s55"]
+radius = 4.0
+height = 16.115930908425558
+
+[sub_resource type="CapsuleShape2D" id="s56"]
+radius = 4.0
+height = 16.3253893272378
+
+[sub_resource type="CapsuleShape2D" id="s57"]
+radius = 4.0
+height = 16.532221718445534
+
+[sub_resource type="CapsuleShape2D" id="s58"]
+radius = 4.0
+height = 16.731699742459337
+
+[sub_resource type="CapsuleShape2D" id="s59"]
+radius = 4.0
+height = 16.91956440362035
+
+[sub_resource type="CapsuleShape2D" id="s60"]
+radius = 4.0
+height = 17.092046062386547
+
+[sub_resource type="CapsuleShape2D" id="s61"]
+radius = 4.0
+height = 17.245869410551517
+
+[sub_resource type="CapsuleShape2D" id="s62"]
+radius = 4.0
+height = 17.37824985659884
+
+[sub_resource type="CapsuleShape2D" id="s63"]
+radius = 4.0
+height = 17.486885748943642
+
+[sub_resource type="CapsuleShape2D" id="s64"]
+radius = 4.0
+height = 17.569949314920244
+
+[sub_resource type="CapsuleShape2D" id="s65"]
+radius = 4.0
+height = 17.626078092621256
+
+[sub_resource type="CapsuleShape2D" id="s66"]
+radius = 4.0
+height = 17.654367897221984
+
+[sub_resource type="CapsuleShape2D" id="s67"]
+radius = 4.0
+height = 67.0
+
+[sub_resource type="CapsuleShape2D" id="s68"]
+radius = 4.0
+height = 67.0
+
+[sub_resource type="CircleShape2D" id="s69"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="s70"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="s71"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="s72"]
+radius = 16.0
+
+[sub_resource type="CapsuleShape2D" id="s73"]
+radius = 4.0
+height = 60.40229002629561
+
+[sub_resource type="CapsuleShape2D" id="s74"]
+radius = 4.0
+height = 64.22277118748238
+
+[sub_resource type="CapsuleShape2D" id="s75"]
+radius = 4.0
+height = 114.89246933250256
+
+[sub_resource type="CapsuleShape2D" id="s76"]
+radius = 4.0
+height = 113.11898020814318
+
+[sub_resource type="RectangleShape2D" id="s77"]
+size = Vector2(46, 48)
+
+[sub_resource type="RectangleShape2D" id="s78"]
+size = Vector2(46, 48)
+
+[sub_resource type="RectangleShape2D" id="s79"]
+size = Vector2(375, 32)
+
+[sub_resource type="CapsuleShape2D" id="flipper_left"]
+resource_local_to_scene = true
+radius = 10.0
+height = 131.0
+
+[sub_resource type="CapsuleShape2D" id="flipper_right"]
+resource_local_to_scene = true
+radius = 10.0
+height = 131.0
+
+[node name="Table" type="Node2D"]
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(240, 450)
+texture = ExtResource("floor")
+scale = Vector2(2.82, 4.25)
+modulate = Color(0.10, 0.15, 0.19, 1)
+
+[node name="Rails" type="Node2D" parent="."]
+
+
+[node name="Straight0" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(32.0000, 399.0000)
+rotation = -1.5707963267948966
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Straight0"]
+rotation = 1.5707963
+shape = SubResource("s1")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Straight0"]
+texture = ExtResource("wall")
+scale = Vector2(1.0541310541310542, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Straight1" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(448.0000, 504.0000)
+rotation = 1.5707963267948966
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Straight1"]
+rotation = 1.5707963
+shape = SubResource("s2")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Straight1"]
+texture = ExtResource("wall")
+scale = Vector2(1.6524216524216524, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Straight2" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(407.0000, 504.0000)
+rotation = 1.5707963267948966
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Straight2"]
+rotation = 1.5707963
+shape = SubResource("s3")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Straight2"]
+texture = ExtResource("wall")
+scale = Vector2(1.6524216524216524, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Straight3" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(427.5000, 790.0000)
+rotation = 0.0
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Straight3"]
+rotation = 1.5707963
+shape = SubResource("s4")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Straight3"]
+texture = ExtResource("wall")
+scale = Vector2(0.1396011396011396, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Straight4" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(70.0000, 631.0000)
+rotation = 0.9304398617240539
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Straight4"]
+rotation = 1.5707963
+shape = SubResource("s5")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Straight4"]
+texture = ExtResource("wall")
+scale = Vector2(0.3851869770064466, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Straight5" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(389.5000, 631.0000)
+rotation = 1.9013443081853187
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Straight5"]
+rotation = 1.5707963
+shape = SubResource("s6")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Straight5"]
+texture = ExtResource("wall")
+scale = Vector2(0.33002233967146233, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Canopy" type="Node2D" parent="Rails"]
+
+
+[node name="Part0" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(33.2804, 209.3961)
+rotation = -1.4230627915468452
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part0"]
+rotation = 1.5707963
+shape = SubResource("s7")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part0"]
+texture = ExtResource("wall")
+scale = Vector2(0.07235696815194866, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part1" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(38.3705, 192.4002)
+rotation = -1.144648252619885
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part1"]
+rotation = 1.5707963
+shape = SubResource("s8")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part1"]
+texture = ExtResource("wall")
+scale = Vector2(0.07530655981538154, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part2" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(48.4254, 176.0346)
+rotation = -0.9063586534280018
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part2"]
+rotation = 1.5707963
+shape = SubResource("s9")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part2"]
+texture = ExtResource("wall")
+scale = Vector2(0.08050241283681632, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part3" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(63.1976, 160.7023)
+rotation = -0.7119921199217425
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part3"]
+rotation = 1.5707963
+shape = SubResource("s10")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part3"]
+texture = ExtResource("wall")
+scale = Vector2(0.08696959112981398, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part4" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(82.3231, 146.7809)
+rotation = -0.5544171392324964
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part4"]
+rotation = 1.5707963
+shape = SubResource("s11")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part4"]
+texture = ExtResource("wall")
+scale = Vector2(0.0938232032795513, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part5" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(105.3312, 134.6132)
+rotation = -0.42424788236333233
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part5"]
+rotation = 1.5707963
+shape = SubResource("s12")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part5"]
+texture = ExtResource("wall")
+scale = Vector2(0.10037929841258202, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part6" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(131.6553, 124.4987)
+rotation = -0.3133971583601809
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part6"]
+rotation = 1.5707963
+shape = SubResource("s13")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part6"]
+texture = ExtResource("wall")
+scale = Vector2(0.10613741055835713, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part7" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(160.6472, 116.6865)
+rotation = -0.2156489908345244
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part7"]
+rotation = 1.5707963
+shape = SubResource("s14")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part7"]
+texture = ExtResource("wall")
+scale = Vector2(0.11073930711934164, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part8" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(191.5930, 111.3690)
+rotation = -0.12628902623083668
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part8"]
+rotation = 1.5707963
+shape = SubResource("s15")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part8"]
+texture = ExtResource("wall")
+scale = Vector2(0.11393716715470831, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part9" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(223.7308, 108.6771)
+rotation = -0.041597086281483085
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part9"]
+rotation = 1.5707963
+shape = SubResource("s16")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part9"]
+texture = ExtResource("wall")
+scale = Vector2(0.1155741877330288, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part10" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(256.2692, 108.6771)
+rotation = 0.04159708628148269
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part10"]
+rotation = 1.5707963
+shape = SubResource("s17")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part10"]
+texture = ExtResource("wall")
+scale = Vector2(0.11557418773302872, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part11" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(288.4070, 111.3690)
+rotation = 0.12628902623083657
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part11"]
+rotation = 1.5707963
+shape = SubResource("s18")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part11"]
+texture = ExtResource("wall")
+scale = Vector2(0.11393716715470839, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part12" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(319.3528, 116.6865)
+rotation = 0.21564899083452374
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part12"]
+rotation = 1.5707963
+shape = SubResource("s19")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part12"]
+texture = ExtResource("wall")
+scale = Vector2(0.11073930711934173, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part13" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(348.3447, 124.4987)
+rotation = 0.31339715836018184
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part13"]
+rotation = 1.5707963
+shape = SubResource("s20")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part13"]
+texture = ExtResource("wall")
+scale = Vector2(0.10613741055835717, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part14" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(374.6688, 134.6132)
+rotation = 0.42424788236333316
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part14"]
+rotation = 1.5707963
+shape = SubResource("s21")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part14"]
+texture = ExtResource("wall")
+scale = Vector2(0.10037929841258186, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part15" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(397.6769, 146.7809)
+rotation = 0.5544171392324936
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part15"]
+rotation = 1.5707963
+shape = SubResource("s22")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part15"]
+texture = ExtResource("wall")
+scale = Vector2(0.09382320327955149, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part16" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(416.8024, 160.7023)
+rotation = 0.7119921199217433
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part16"]
+rotation = 1.5707963
+shape = SubResource("s23")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part16"]
+texture = ExtResource("wall")
+scale = Vector2(0.08696959112981392, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part17" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(431.5746, 176.0346)
+rotation = 0.9063586534280007
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part17"]
+rotation = 1.5707963
+shape = SubResource("s24")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part17"]
+texture = ExtResource("wall")
+scale = Vector2(0.08050241283681638, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part18" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(441.6295, 192.4002)
+rotation = 1.1446482526198858
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part18"]
+rotation = 1.5707963
+shape = SubResource("s25")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part18"]
+texture = ExtResource("wall")
+scale = Vector2(0.07530655981538144, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part19" type="StaticBody2D" parent="Rails/Canopy"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(446.7196, 209.3961)
+rotation = 1.4230627915468437
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/Canopy/Part19"]
+rotation = 1.5707963
+shape = SubResource("s26")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/Canopy/Part19"]
+texture = ExtResource("wall")
+scale = Vector2(0.07235696815194874, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="LeftGuide" type="Node2D" parent="Rails"]
+
+
+[node name="Part0" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(81.1372, 305.1748)
+rotation = -1.5423745552549122
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part0"]
+rotation = 1.5707963
+shape = SubResource("s27")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part0"]
+texture = ExtResource("wall")
+scale = Vector2(0.05029734443652987, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part1" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(81.6850, 295.5540)
+rotation = -1.485363775358765
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part1"]
+rotation = 1.5707963
+shape = SubResource("s28")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part1"]
+texture = ExtResource("wall")
+scale = Vector2(0.05021674670262466, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part2" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(82.7774, 286.0224)
+rotation = -1.427849538289703
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part2"]
+rotation = 1.5707963
+shape = SubResource("s29")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part2"]
+texture = ExtResource("wall")
+scale = Vector2(0.050056835655043604, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part3" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(84.4075, 276.6386)
+rotation = -1.3694904954140594
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part3"]
+rotation = 1.5707963
+shape = SubResource("s30")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part3"]
+texture = ExtResource("wall")
+scale = Vector2(0.04982018731892755, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part4" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(86.5653, 267.4604)
+rotation = -1.3099371456648161
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part4"]
+rotation = 1.5707963
+shape = SubResource("s31")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part4"]
+texture = ExtResource("wall")
+scale = Vector2(0.049510683352133274, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part5" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(89.2376, 258.5446)
+rotation = -1.2488294807965423
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part5"]
+rotation = 1.5707963
+shape = SubResource("s32")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part5"]
+texture = ExtResource("wall")
+scale = Vector2(0.04913353108419255, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part6" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(92.4077, 249.9459)
+rotation = -1.185795726925877
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part6"]
+rotation = 1.5707963
+shape = SubResource("s33")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part6"]
+texture = ExtResource("wall")
+scale = Vector2(0.04869528792702736, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part7" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(96.0563, 241.7175)
+rotation = -1.120452775859285
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part7"]
+rotation = 1.5707963
+shape = SubResource("s34")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part7"]
+texture = ExtResource("wall")
+scale = Vector2(0.048203887189801384, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part8" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(100.1607, 233.9102)
+rotation = -1.0524091165723517
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part8"]
+rotation = 1.5707963
+shape = SubResource("s35")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part8"]
+texture = ExtResource("wall")
+scale = Vector2(0.04766866023492683, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part9" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(104.6957, 226.5719)
+rotation = -0.98127132876859
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part9"]
+rotation = 1.5707963
+shape = SubResource("s36")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part9"]
+texture = ExtResource("wall")
+scale = Vector2(0.047100346776198246, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part10" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(109.6333, 219.7480)
+rotation = -0.9066554421448854
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part10"]
+rotation = 1.5707963
+shape = SubResource("s37")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part10"]
+texture = ExtResource("wall")
+scale = Vector2(0.04651108070438116, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part11" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(114.9431, 213.4805)
+rotation = -0.828204601702085
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part11"]
+rotation = 1.5707963
+shape = SubResource("s38")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part11"]
+texture = ExtResource("wall")
+scale = Vector2(0.045914333072437495, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part12" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(120.5924, 207.8081)
+rotation = -0.7456143418286383
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part12"]
+rotation = 1.5707963
+shape = SubResource("s39")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part12"]
+texture = ExtResource("wall")
+scale = Vector2(0.04532478718076071, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part13" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(126.5462, 202.7657)
+rotation = -0.6586661063628126
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part13"]
+rotation = 1.5707963
+shape = SubResource("s40")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part13"]
+texture = ExtResource("wall")
+scale = Vector2(0.04475811435413525, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part14" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(132.7680, 198.3845)
+rotation = -0.5672681586533348
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part14"]
+rotation = 1.5707963
+shape = SubResource("s41")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part14"]
+texture = ExtResource("wall")
+scale = Vector2(0.044230615657763865, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part15" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(139.2193, 194.6914)
+rotation = -0.47150049698121144
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part15"]
+rotation = 1.5707963
+shape = SubResource("s42")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part15"]
+texture = ExtResource("wall")
+scale = Vector2(0.04375869875754142, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part16" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(145.8604, 191.7093)
+rotation = -0.37165698568163025
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part16"]
+rotation = 1.5707963
+shape = SubResource("s43")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part16"]
+texture = ExtResource("wall")
+scale = Vector2(0.043358175701014516, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part17" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(152.6503, 189.4564)
+rotation = -0.26827450531356856
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part17"]
+rotation = 1.5707963
+shape = SubResource("s44")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part17"]
+texture = ExtResource("wall")
+scale = Vector2(0.04304340058993839, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part18" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(159.5472, 187.9468)
+rotation = -0.16213725684779545
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part18"]
+rotation = 1.5707963
+shape = SubResource("s45")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part18"]
+texture = ExtResource("wall")
+scale = Vector2(0.04282631443402276, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part19" type="StaticBody2D" parent="Rails/LeftGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(166.5086, 187.1896)
+rotation = -0.054246537909579846
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftGuide/Part19"]
+rotation = 1.5707963
+shape = SubResource("s46")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftGuide/Part19"]
+texture = ExtResource("wall")
+scale = Vector2(0.04271551657202214, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="RightGuide" type="Node2D" parent="Rails"]
+
+
+[node name="Part0" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(287.4914, 187.1896)
+rotation = 0.054246537909579846
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part0"]
+rotation = 1.5707963
+shape = SubResource("s47")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part0"]
+texture = ExtResource("wall")
+scale = Vector2(0.04271551657202214, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part1" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(294.4528, 187.9468)
+rotation = 0.16213725684779545
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part1"]
+rotation = 1.5707963
+shape = SubResource("s48")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part1"]
+texture = ExtResource("wall")
+scale = Vector2(0.04282631443402276, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part2" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(301.3497, 189.4564)
+rotation = 0.2682745053135657
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part2"]
+rotation = 1.5707963
+shape = SubResource("s49")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part2"]
+texture = ExtResource("wall")
+scale = Vector2(0.04304340058993829, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part3" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(308.1396, 191.7093)
+rotation = 0.3716569856816288
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part3"]
+rotation = 1.5707963
+shape = SubResource("s50")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part3"]
+texture = ExtResource("wall")
+scale = Vector2(0.04335817570101459, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part4" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(314.7807, 194.6914)
+rotation = 0.4715004969812166
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part4"]
+rotation = 1.5707963
+shape = SubResource("s51")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part4"]
+texture = ExtResource("wall")
+scale = Vector2(0.043758698757541376, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part5" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(321.2320, 198.3845)
+rotation = 0.5672681586533316
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part5"]
+rotation = 1.5707963
+shape = SubResource("s52")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part5"]
+texture = ExtResource("wall")
+scale = Vector2(0.044230615657763823, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part6" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(327.4538, 202.7657)
+rotation = 0.6586661063628115
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part6"]
+rotation = 1.5707963
+shape = SubResource("s53")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part6"]
+texture = ExtResource("wall")
+scale = Vector2(0.04475811435413528, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part7" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(333.4076, 207.8081)
+rotation = 0.7456143418286371
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part7"]
+rotation = 1.5707963
+shape = SubResource("s54")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part7"]
+texture = ExtResource("wall")
+scale = Vector2(0.04532478718076074, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part8" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(339.0569, 213.4805)
+rotation = 0.82820460170208
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part8"]
+rotation = 1.5707963
+shape = SubResource("s55")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part8"]
+texture = ExtResource("wall")
+scale = Vector2(0.04591433307243749, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part9" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(344.3667, 219.7480)
+rotation = 0.9066554421448888
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part9"]
+rotation = 1.5707963
+shape = SubResource("s56")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part9"]
+texture = ExtResource("wall")
+scale = Vector2(0.046511080704381196, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part10" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(349.3043, 226.5719)
+rotation = 0.9812713287685922
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part10"]
+rotation = 1.5707963
+shape = SubResource("s57")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part10"]
+texture = ExtResource("wall")
+scale = Vector2(0.0471003467761981, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part11" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(353.8393, 233.9102)
+rotation = 1.0524091165723475
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part11"]
+rotation = 1.5707963
+shape = SubResource("s58")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part11"]
+texture = ExtResource("wall")
+scale = Vector2(0.047668660234926885, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part12" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(357.9437, 241.7175)
+rotation = 1.120452775859285
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part12"]
+rotation = 1.5707963
+shape = SubResource("s59")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part12"]
+texture = ExtResource("wall")
+scale = Vector2(0.048203887189801564, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part13" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(361.5923, 249.9459)
+rotation = 1.185795726925876
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part13"]
+rotation = 1.5707963
+shape = SubResource("s60")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part13"]
+texture = ExtResource("wall")
+scale = Vector2(0.0486952879270272, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part14" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(364.7624, 258.5446)
+rotation = 1.2488294807965448
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part14"]
+rotation = 1.5707963
+shape = SubResource("s61")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part14"]
+texture = ExtResource("wall")
+scale = Vector2(0.049133531084192356, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part15" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(367.4347, 267.4604)
+rotation = 1.3099371456648163
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part15"]
+rotation = 1.5707963
+shape = SubResource("s62")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part15"]
+texture = ExtResource("wall")
+scale = Vector2(0.04951068335213344, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part16" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(369.5925, 276.6386)
+rotation = 1.3694904954140548
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part16"]
+rotation = 1.5707963
+shape = SubResource("s63")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part16"]
+texture = ExtResource("wall")
+scale = Vector2(0.049820187318927754, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part17" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(371.2226, 286.0224)
+rotation = 1.427849538289705
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part17"]
+rotation = 1.5707963
+shape = SubResource("s64")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part17"]
+texture = ExtResource("wall")
+scale = Vector2(0.05005683565504343, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part18" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(372.3150, 295.5540)
+rotation = 1.4853637753587678
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part18"]
+rotation = 1.5707963
+shape = SubResource("s65")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part18"]
+texture = ExtResource("wall")
+scale = Vector2(0.05021674670262466, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Part19" type="StaticBody2D" parent="Rails/RightGuide"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(372.8628, 305.1748)
+rotation = 1.5423745552549093
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightGuide/Part19"]
+rotation = 1.5707963
+shape = SubResource("s66")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightGuide/Part19"]
+texture = ExtResource("wall")
+scale = Vector2(0.05029734443652987, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="LeftEnd" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(81.0000, 339.5000)
+rotation = 1.5707963267948966
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/LeftEnd"]
+rotation = 1.5707963
+shape = SubResource("s67")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/LeftEnd"]
+texture = ExtResource("wall")
+scale = Vector2(0.1908831908831909, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="RightEnd" type="StaticBody2D" parent="Rails"]
+physics_material_override = ExtResource("rail_material")
+position = Vector2(373.0000, 339.5000)
+rotation = 1.5707963267948966
+
+[node name="Collision" type="CollisionShape2D" parent="Rails/RightEnd"]
+rotation = 1.5707963
+shape = SubResource("s68")
+
+[node name="Sprite" type="Sprite2D" parent="Rails/RightEnd"]
+texture = ExtResource("wall")
+scale = Vector2(0.1908831908831909, 0.11594202898550725)
+modulate = Color(0.5, 0.58, 0.65, 1)
+
+[node name="Pins" type="Node2D" parent="."]
+
+
+[node name="UpperLeft" type="StaticBody2D" parent="Pins"]
+physics_material_override = ExtResource("pin_material")
+position = Vector2(175.0000, 241.0000)
+metadata/pin = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Pins/UpperLeft"]
+shape = SubResource("s69")
+
+[node name="Sprite" type="TextureRect" parent="Pins/UpperLeft"]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture = ExtResource("blue_pin")
+expand_mode = 1
+script = ExtResource("pin_skin")
+
+[node name="Level" type="Label" parent="Pins/UpperLeft"]
+offset_left = -18.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 33.0
+text = "L1"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.90, 0.96, 0.97, 1)
+theme_override_font_sizes/font_size = 11
+
+[node name="UpperRight" type="StaticBody2D" parent="Pins"]
+physics_material_override = ExtResource("pin_material")
+position = Vector2(280.0000, 241.0000)
+metadata/pin = 1
+
+[node name="Collision" type="CollisionShape2D" parent="Pins/UpperRight"]
+shape = SubResource("s70")
+
+[node name="Sprite" type="TextureRect" parent="Pins/UpperRight"]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture = ExtResource("yellow_pin")
+expand_mode = 1
+script = ExtResource("pin_skin")
+
+[node name="Level" type="Label" parent="Pins/UpperRight"]
+offset_left = -18.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 33.0
+text = "L1"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.90, 0.96, 0.97, 1)
+theme_override_font_sizes/font_size = 11
+
+[node name="UpperCenter" type="StaticBody2D" parent="Pins"]
+physics_material_override = ExtResource("pin_material")
+position = Vector2(226.0000, 295.0000)
+metadata/pin = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Pins/UpperCenter"]
+shape = SubResource("s71")
+
+[node name="Sprite" type="TextureRect" parent="Pins/UpperCenter"]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture = ExtResource("green_pin")
+expand_mode = 1
+script = ExtResource("pin_skin")
+
+[node name="Level" type="Label" parent="Pins/UpperCenter"]
+offset_left = -18.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 33.0
+text = "L1"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.90, 0.96, 0.97, 1)
+theme_override_font_sizes/font_size = 11
+
+[node name="LowerCenter" type="StaticBody2D" parent="Pins"]
+physics_material_override = ExtResource("pin_material")
+position = Vector2(225.0000, 550.0000)
+metadata/pin = 3
+
+[node name="Collision" type="CollisionShape2D" parent="Pins/LowerCenter"]
+shape = SubResource("s72")
+
+[node name="Sprite" type="TextureRect" parent="Pins/LowerCenter"]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture = ExtResource("blue_pin")
+expand_mode = 1
+script = ExtResource("pin_skin")
+
+[node name="Level" type="Label" parent="Pins/LowerCenter"]
+offset_left = -18.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 33.0
+text = "L1"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.90, 0.96, 0.97, 1)
+theme_override_font_sizes/font_size = 11
+
+[node name="BouncePads" type="Node2D" parent="."]
+
+
+[node name="UpperLeft" type="StaticBody2D" parent="BouncePads"]
+script = ExtResource("pad_script")
+physics_material_override = ExtResource("pad_material")
+position = Vector2(145.5000, 337.5000)
+rotation = 0.73139666302148
+
+[node name="Collision" type="CollisionShape2D" parent="BouncePads/UpperLeft"]
+rotation = 1.5707963
+shape = SubResource("s73")
+
+[node name="Sprite" type="Sprite2D" parent="BouncePads/UpperLeft"]
+texture = ExtResource("wall")
+scale = Vector2(0.17208629637121256, 0.11594202898550725)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="UpperRight" type="StaticBody2D" parent="BouncePads"]
+script = ExtResource("pad_script")
+physics_material_override = ExtResource("pad_material")
+position = Vector2(312.0000, 337.5000)
+rotation = -0.671963171590232
+
+[node name="Collision" type="CollisionShape2D" parent="BouncePads/UpperRight"]
+rotation = 1.5707963
+shape = SubResource("s74")
+
+[node name="Sprite" type="Sprite2D" parent="BouncePads/UpperRight"]
+texture = ExtResource("wall")
+scale = Vector2(0.18297085808399538, 0.11594202898550725)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="LowerLeft" type="StaticBody2D" parent="BouncePads"]
+script = ExtResource("pad_script")
+physics_material_override = ExtResource("pad_material")
+position = Vector2(136.5000, 613.5000)
+rotation = 1.094597075724523
+
+[node name="Collision" type="CollisionShape2D" parent="BouncePads/LowerLeft"]
+rotation = 1.5707963
+shape = SubResource("s75")
+
+[node name="Sprite" type="Sprite2D" parent="BouncePads/LowerLeft"]
+texture = ExtResource("wall")
+scale = Vector2(0.3273289724572722, 0.11594202898550725)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="LowerRight" type="StaticBody2D" parent="BouncePads"]
+script = ExtResource("pad_script")
+physics_material_override = ExtResource("pad_material")
+position = Vector2(321.5000, 613.5000)
+rotation = 2.0131705497716417
+
+[node name="Collision" type="CollisionShape2D" parent="BouncePads/LowerRight"]
+rotation = 1.5707963
+shape = SubResource("s76")
+
+[node name="Sprite" type="Sprite2D" parent="BouncePads/LowerRight"]
+texture = ExtResource("wall")
+scale = Vector2(0.3222762968892968, 0.11594202898550725)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="Diamond" type="StaticBody2D" parent="BouncePads"]
+script = ExtResource("pad_script")
+physics_material_override = ExtResource("pad_material")
+position = Vector2(225, 437)
+
+[node name="Collision" type="CollisionPolygon2D" parent="BouncePads/Diamond"]
+polygon = PackedVector2Array(0, -30, 46, 0, 0, 30, -46, 0)
+
+[node name="Sprite" type="Polygon2D" parent="BouncePads/Diamond"]
+polygon = PackedVector2Array(0, -30, 46, 0, 0, 30, -46, 0)
+texture = ExtResource("floor")
+color = Color(0.55, 0.88, 0.23, 1)
+
+[node name="MultiplierZones" type="Node2D" parent="."]
+
+
+[node name="Left" type="Area2D" parent="MultiplierZones"]
+position = Vector2(145, 422)
+collision_layer = 0
+collision_mask = 1
+
+[node name="Detection" type="CollisionShape2D" parent="MultiplierZones/Left"]
+shape = SubResource("s77")
+
+[node name="Sprite" type="Sprite2D" parent="MultiplierZones/Left"]
+texture = ExtResource("floor")
+scale = Vector2(0.27, 0.28)
+modulate = Color(0.55, 0.88, 0.23, 0.18)
+
+[node name="Label" type="Label" parent="MultiplierZones/Left"]
+offset_left = -23.0
+offset_top = -16.0
+offset_right = 23.0
+offset_bottom = 16.0
+text = "×2"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+
+[node name="Right" type="Area2D" parent="MultiplierZones"]
+position = Vector2(307, 422)
+collision_layer = 0
+collision_mask = 1
+
+[node name="Detection" type="CollisionShape2D" parent="MultiplierZones/Right"]
+shape = SubResource("s78")
+
+[node name="Sprite" type="Sprite2D" parent="MultiplierZones/Right"]
+texture = ExtResource("floor")
+scale = Vector2(0.27, 0.28)
+modulate = Color(0.55, 0.88, 0.23, 0.18)
+
+[node name="Label" type="Label" parent="MultiplierZones/Right"]
+offset_left = -23.0
+offset_top = -16.0
+offset_right = 23.0
+offset_bottom = 16.0
+text = "×2"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+
+[node name="Drain" type="Area2D" parent="."]
+position = Vector2(220, 758)
+collision_layer = 0
+collision_mask = 1
+
+[node name="Detection" type="CollisionShape2D" parent="Drain"]
+shape = SubResource("s79")
+
+[node name="LeftFlipper" type="AnimatableBody2D" parent="."]
+position = Vector2(108, 682)
+script = ExtResource("flipper_script")
+side = 1.0
+
+[node name="RightFlipper" type="AnimatableBody2D" parent="."]
+position = Vector2(372, 682)
+script = ExtResource("flipper_script")
+side = -1.0
+
+[node name="Launcher" type="Marker2D" parent="."]
+position = Vector2(427.0000, 746.0000)
+
+[node name="Collision" type="CollisionShape2D" parent="LeftFlipper"]
+position = Vector2(55.5, 0)
+rotation = 1.5707963
+shape = SubResource("flipper_left")
+
+[node name="Sprite" type="Sprite2D" parent="LeftFlipper"]
+position = Vector2(55.5, 0)
+scale = Vector2(0.42378, 0.31111)
+texture = ExtResource("flipper_texture")
+flip_h = true
+modulate = Color(0.93, 0.51, 0.73, 1)
+
+[node name="Collision" type="CollisionShape2D" parent="RightFlipper"]
+position = Vector2(-55.5, 0)
+rotation = 1.5707963
+shape = SubResource("flipper_right")
+
+[node name="Sprite" type="Sprite2D" parent="RightFlipper"]
+position = Vector2(-55.5, 0)
+scale = Vector2(0.42378, 0.31111)
+texture = ExtResource("flipper_texture")
+flip_h = false
+modulate = Color(0.93, 0.51, 0.73, 1)
+
+[node name="Edge0" type="Sprite2D" parent="BouncePads/Diamond"]
+position = Vector2(23.0, -15.0)
+rotation = 0.5779019369622457
+texture = ExtResource("wall")
+scale = Vector2(0.15646188282331602, 0.07246376811594203)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="Edge1" type="Sprite2D" parent="BouncePads/Diamond"]
+position = Vector2(23.0, 15.0)
+rotation = 2.5636907166275478
+texture = ExtResource("wall")
+scale = Vector2(0.15646188282331602, 0.07246376811594203)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="Edge2" type="Sprite2D" parent="BouncePads/Diamond"]
+position = Vector2(-23.0, 15.0)
+rotation = -2.5636907166275478
+texture = ExtResource("wall")
+scale = Vector2(0.15646188282331602, 0.07246376811594203)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="Edge3" type="Sprite2D" parent="BouncePads/Diamond"]
+position = Vector2(-23.0, -15.0)
+rotation = -0.5779019369622457
+texture = ExtResource("wall")
+scale = Vector2(0.15646188282331602, 0.07246376811594203)
+modulate = Color(0.55, 0.88, 0.23, 1)
+
+[node name="Points" type="Label" parent="Pins/UpperLeft"]
+visible = false
+offset_left = -40.0
+offset_top = -43.0
+offset_right = 40.0
+offset_bottom = -21.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.745, 0.4, 1)
+theme_override_font_sizes/font_size = 16
+text = "+25"
+horizontal_alignment = 1
+
+[node name="Points" type="Label" parent="Pins/UpperRight"]
+visible = false
+offset_left = -40.0
+offset_top = -43.0
+offset_right = 40.0
+offset_bottom = -21.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.745, 0.4, 1)
+theme_override_font_sizes/font_size = 16
+text = "+25"
+horizontal_alignment = 1
+
+[node name="Points" type="Label" parent="Pins/UpperCenter"]
+visible = false
+offset_left = -40.0
+offset_top = -43.0
+offset_right = 40.0
+offset_bottom = -21.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.745, 0.4, 1)
+theme_override_font_sizes/font_size = 16
+text = "+25"
+horizontal_alignment = 1
+
+[node name="Points" type="Label" parent="Pins/LowerCenter"]
+visible = false
+offset_left = -40.0
+offset_top = -43.0
+offset_right = 40.0
+offset_bottom = -21.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.745, 0.4, 1)
+theme_override_font_sizes/font_size = 16
+text = "+25"
+horizontal_alignment = 1

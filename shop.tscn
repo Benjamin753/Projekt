@@ -1,0 +1,403 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://shop.gd" id="script"]
+[ext_resource type="AtlasTexture" path="res://assets/pins/blue_1.tres" id="pin"]
+[ext_resource type="Script" path="res://pin_skin.gd" id="skin_script"]
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.045, 0.08, 0.13, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.34, 0.43, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_left = 18
+corner_radius_bottom_right = 18
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="normal"]
+bg_color = Color(0.1, 0.17, 0.24, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="selected"]
+bg_color = Color(0.16, 0.33, 0.36, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.46, 0.89, 0.91, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.75, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="disabled"]
+bg_color = Color(0.08, 0.12, 0.17, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="Theme" id="theme"]
+default_font_size = 16
+Label/colors/font_color = Color(0.90, 0.96, 0.97, 1)
+Button/colors/font_color = Color(0.90, 0.96, 0.97, 1)
+Button/colors/font_disabled_color = Color(0.62, 0.68, 0.73, 1)
+Button/styles/normal = SubResource("normal")
+Button/styles/hover = SubResource("selected")
+Button/styles/pressed = SubResource("selected")
+Button/styles/hover_pressed = SubResource("selected")
+Button/styles/focus = SubResource("focus")
+Button/styles/disabled = SubResource("disabled")
+
+[node name="Shop" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("theme")
+script = ExtResource("script")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015, 0.025, 0.04, 0.88)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+theme_override_styles/panel = SubResource("panel")
+
+[node name="Layout" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "UPGRADE-SHOP"
+
+[node name="Wallet" type="Label" parent="Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "Guthaben 0"
+
+[node name="Subtitle" type="Label" parent="Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 2
+
+[node name="Tabs" type="HBoxContainer" parent="Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PinsTab" type="Button" parent="Panel/Layout/Tabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Pins"
+
+[node name="BallTab" type="Button" parent="Panel/Layout/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Kugel"
+
+[node name="FlippersTab" type="Button" parent="Panel/Layout/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Flipper"
+
+[node name="ShopContent" type="VBoxContainer" parent="Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Layout/ShopContent"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Content" type="VBoxContainer" parent="Panel/Layout/ShopContent/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="PinPicker" type="Control" parent="Panel/Layout/ShopContent/Scroll/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 156)
+layout_mode = 2
+
+[node name="Hint" type="Label" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 14
+text = "Wähle einen Pin an seiner Tischposition:"
+
+[node name="UpperLeft" type="Button" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.25
+anchor_right = 0.25
+offset_left = -35.0
+offset_top = 24.0
+offset_right = 35.0
+offset_bottom = 74.0
+toggle_mode = true
+text = "L1"
+alignment = 2
+
+[node name="UpperRight" type="Button" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.75
+anchor_right = 0.75
+offset_left = -35.0
+offset_top = 24.0
+offset_right = 35.0
+offset_bottom = 74.0
+toggle_mode = true
+text = "L1"
+alignment = 2
+
+[node name="UpperCenter" type="Button" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = 48.0
+offset_right = 35.0
+offset_bottom = 98.0
+toggle_mode = true
+text = "L1"
+alignment = 2
+
+[node name="LowerCenter" type="Button" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = 104.0
+offset_right = 35.0
+offset_bottom = 154.0
+toggle_mode = true
+text = "L1"
+alignment = 2
+
+[node name="ItemPicker" type="HBoxContainer" parent="Panel/Layout/ShopContent/Scroll/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Item0" type="Button" parent="Panel/Layout/ShopContent/Scroll/Content/ItemPicker"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+
+[node name="Item1" type="Button" parent="Panel/Layout/ShopContent/Scroll/Content/ItemPicker"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+
+[node name="Detail" type="VBoxContainer" parent="Panel/Layout/ShopContent/Scroll/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DetailTitle" type="Label" parent="Panel/Layout/ShopContent/Scroll/Content/Detail"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+autowrap_mode = 2
+
+[node name="Level" type="Label" parent="Panel/Layout/ShopContent/Scroll/Content/Detail"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.46, 0.89, 0.91, 1)
+
+[node name="CurrentRow" type="HBoxContainer" parent="Panel/Layout/ShopContent/Scroll/Content/Detail"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CurrentSkin" type="TextureRect" parent="Panel/Layout/ShopContent/Scroll/Content/Detail/CurrentRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("pin")
+expand_mode = 1
+script = ExtResource("skin_script")
+
+[node name="CurrentEffect" type="Label" parent="Panel/Layout/ShopContent/Scroll/Content/Detail/CurrentRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+autowrap_mode = 2
+
+[node name="NextRow" type="HBoxContainer" parent="Panel/Layout/ShopContent/Scroll/Content/Detail"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NextSkin" type="TextureRect" parent="Panel/Layout/ShopContent/Scroll/Content/Detail/NextRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("pin")
+expand_mode = 1
+script = ExtResource("skin_script")
+
+[node name="NextEffect" type="Label" parent="Panel/Layout/ShopContent/Scroll/Content/Detail/NextRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.83, 0.59, 1)
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="Panel/Layout/ShopContent/Scroll/Content/Detail"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "Upgrade kaufen"
+
+[node name="RunSummary" type="Label" parent="Panel/Layout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Feedback" type="Label" parent="Panel/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.46, 0.89, 0.91, 1)
+theme_override_font_sizes/font_size = 15
+autowrap_mode = 2
+
+[node name="Continue" type="Button" parent="Panel/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.83, 0.59, 1)
+text = "Zur Feder · nächste Kugel"
+
+[node name="Footnote" type="Label" parent="Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.73, 0.79, 1)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 2
+
+[node name="Skin" type="TextureRect" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker/UpperLeft"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 36.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = ExtResource("pin")
+expand_mode = 1
+script = ExtResource("skin_script")
+
+[node name="Skin" type="TextureRect" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker/UpperRight"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 36.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = ExtResource("pin")
+expand_mode = 1
+script = ExtResource("skin_script")
+
+[node name="Skin" type="TextureRect" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker/UpperCenter"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 36.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = ExtResource("pin")
+expand_mode = 1
+script = ExtResource("skin_script")
+
+[node name="Skin" type="TextureRect" parent="Panel/Layout/ShopContent/Scroll/Content/PinPicker/LowerCenter"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 36.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = ExtResource("pin")
+expand_mode = 1
+script = ExtResource("skin_script")
