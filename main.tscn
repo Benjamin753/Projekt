@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ytqxs36g85id"]
+
+[ext_resource type="Texture2D" uid="uid://ccrimyaasjbhu" path="res://640px-Steel_Ball_Infobox.png" id="1_ig7tw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1d1u"]
+radius = 40.012497
+
+[sub_resource type="TileSet" id="TileSet_1xdw8"]
+
+[node name="Node" type="Node" unique_id=1078732000]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2009956482]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1217273002]
+position = Vector2(9.536743e-07, -4.7683716e-07)
+scale = Vector2(0.14609376, 0.14291404)
+texture = ExtResource("1_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1051789858]
+shape = SubResource("CircleShape2D_k1d1u")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=995034288]
+tile_set = SubResource("TileSet_1xdw8")
