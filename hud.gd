@@ -28,10 +28,10 @@ func _ready() -> void:
 	add_child(panel)
 	var title := add_label("STEEL BALLZ RUN", Vector2(32, 21), Vector2(205, 24), 17, IVORY)
 	title.add_theme_font_override("font", strong_font)
-	var launch_text := "Feder halten und loslassen" if DisplayServer.is_touchscreen_available() else "Leertaste halten und loslassen"
+	var launch_text := "hold SPACE" if DisplayServer.is_touchscreen_available() else "hold SPACE and let go"
 	launch_hint = add_label(launch_text, Vector2(111, 796), Vector2(230, 21), 12, MUTED)
 	launch_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var headings := ["Aktueller Run", "Highscore", "Guthaben", "Kugeln"]
+	var headings := ["Run", "All High", "Moneyun", "Ballz"]
 	var positions := [32.0, 151.0, 270.0, 389.0]
 	var widths := [108.0, 108.0, 108.0, 59.0]
 	var colors := [SILVER, IVORY, GOLD, IVORY]
