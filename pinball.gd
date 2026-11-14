@@ -56,6 +56,7 @@ var spring_held := false
 var spring_charge := 0.0
 var spring_touch := -1
 var multiplier_remaining := 0.0
+@onready var return_sensor: CollisionShape2D = $Table/Launcher/ReturnArea/Collision
 @onready var multiplier_label: Label = $HUD/Multiplier
 
 func _ready() -> void:
@@ -290,7 +291,9 @@ func _physics_process(delta: float) -> void:
 	save_time = maxf(0.0, save_time - delta)
 	if save_time == 0.0 and save_targets == 3:
 		save_targets = 0
-	if $Table/Launcher/ReturnArea.overlaps_body(ball) and ball.linear_velocity.dot(launcher_down()) > 0.0:
+	# Area overlap lists can still contain the ball after it has moved elsewhere.
+	var in_return_sensor := return_sensor.shape.get_rect().has_point(return_sensor.to_local(ball.global_position))
+	if in_return_sensor and ball.linear_velocity.dot(launcher_down()) > 0.0:
 		return_to_launcher()
 		return
 	var bounds := $Table.get_node_or_null("PlayBounds/Collision") as CollisionShape2D
@@ -327,6 +330,7 @@ func return_to_launcher() -> void:
 	phase = Phase.START
 	spring_held = false
 	spring_charge = 0.0
+	spring_touch = -1
 
 func on_drain_entered(body: Node2D) -> void:
 	if phase != Phase.PLAY or body != ball or drain_pending:
