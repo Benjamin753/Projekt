@@ -43,6 +43,15 @@ func run() -> void:
 	var drawn_size := skin_sprite.texture.get_size() * skin_sprite.scale
 	check(drawn_size.is_equal_approx(Vector2.ONE * collider.shape.radius * 2.0), "The steel-ball skin matches its collision diameter.")
 	check(skin_sprite.texture.resource_path == "res://assets/ball/steel_ball.png", "The ball uses the supplied skin.")
+	var sound_toggle: Button = game.get_node("AudioControls/Mute")
+	var loop: AudioStreamWAV = game.audio.music.stream
+	check(loop.loop_mode == AudioStreamWAV.LOOP_FORWARD and loop.loop_end > loop.mix_rate, "The bundled music is configured to loop.")
+	sound_toggle.button_pressed = true
+	sound_toggle.pressed.emit()
+	check(game.audio.muted and game.audio.music.volume_db <= -80.0 and game.audio.voices.all(func(voice): return not voice.playing), "The HUD toggle silences the music and effects.")
+	sound_toggle.button_pressed = false
+	sound_toggle.pressed.emit()
+	check(not game.audio.muted and game.audio.music.volume_db > -80.0, "The second toggle resumes the mix.")
 	check(is_equal_approx(game.charge_multiplier(0.5), 1.25), "Half a second gives 1.25x strength.")
 	check(is_equal_approx(game.charge_multiplier(2.0), 2.0), "Two seconds gives 2x strength.")
 	check(is_equal_approx(game.charge_multiplier(5.0), 2.0), "Charge cannot exceed 2x strength.")
@@ -193,5 +202,5 @@ func run() -> void:
 	await process_frame
 	DirAccess.remove_absolute("res://.godot/test_run_highscore.cfg")
 	if failures == 0:
-		print("Steel Ballz Run lifecycle, pin tiers, pad direction, ball skin, persistence and input checks passed")
+		print("Steel Ballz Run lifecycle, pin tiers, pad direction, ball skin, audio controls, persistence and input checks passed")
 	quit(1 if failures else 0)

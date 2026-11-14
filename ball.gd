@@ -1,10 +1,14 @@
 extends RigidBody2D
 
+signal wall_impact(strength: float)
+
 # Pixel-space tuning for a solid ball rolling on the inclined playfield.
 # The 2D solver handles in-plane spin and contact friction.
 @export var rolling_resistance := 8.0
 @export var maximum_speed := 2400.0
 var previous_active_pads: Dictionary = {}
+var previous_walls: Dictionary = {}
+var wall_cooldown := 0.0
 @onready var radius: float = $Collision.shape.radius
 var roll_angle := 0.0
 var last_position := Vector2.ZERO
@@ -30,6 +34,9 @@ func _process(delta: float) -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var active_pads: Dictionary = {}
+	var walls: Dictionary = {}
+	var impact_speed := 0.0
+	wall_cooldown = maxf(wall_cooldown - state.step, 0.0)
 	for index in state.get_contact_count():
 		var body := state.get_contact_collider_object(index)
 		if not is_instance_valid(body):
@@ -43,6 +50,14 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			if not previous_active_pads.has(id) and not active_pads.has(id):
 				state.linear_velocity = body.bounce_velocity(state.linear_velocity, normal)
 			active_pads[id] = true
+		elif body.is_in_group("metal_rail"):
+			walls[id] = true
+			if not previous_walls.has(id):
+				impact_speed = maxf(impact_speed, absf(state.linear_velocity.dot(normal)))
+	if wall_cooldown == 0.0 and impact_speed > 115.0:
+		wall_cooldown = 0.07
+		wall_impact.emit(clampf(impact_speed / 650.0, 0.0, 1.0))
+	previous_walls = walls
 	previous_active_pads = active_pads
 	state.linear_velocity = state.linear_velocity.move_toward(Vector2.ZERO, rolling_resistance * state.step)
 	state.linear_velocity = state.linear_velocity.limit_length(maximum_speed)

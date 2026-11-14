@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://pinball.gd" id="1"]
 
@@ -9,6 +9,46 @@
 [ext_resource type="Script" path="res://hud.gd" id="hud"]
 
 [ext_resource type="FontFile" path="res://assets/fonts/Geist.ttf" id="font"]
+
+[ext_resource type="Script" path="res://audio.gd" id="audio"]
+
+[ext_resource type="Script" path="res://mute_button.gd" id="mute"]
+
+[sub_resource type="StyleBoxFlat" id="sound_normal"]
+bg_color = Color(0.42, 0.39, 0.36, 0.45)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.91, 0.86, 0.80, 0.26)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
+
+[sub_resource type="StyleBoxFlat" id="sound_hover"]
+bg_color = Color(0.66, 0.61, 0.55, 0.39)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.94, 0.90, 0.85, 0.44)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
+
+[sub_resource type="StyleBoxFlat" id="sound_focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.96, 0.84, 0.67, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
 
 [sub_resource type="FontVariation" id="semibold"]
 base_font = ExtResource("font")
@@ -24,6 +64,13 @@ script = ExtResource("1")
 
 [node name="Table" parent="." instance=ExtResource("table")]
 
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("audio")
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="Effects" type="Node" parent="Audio"]
+
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("hud")
 font = ExtResource("font")
@@ -33,7 +80,7 @@ strong_font = SubResource("semibold")
 visible = false
 offset_left = 235.0
 offset_top = 22.0
-offset_right = 448.0
+offset_right = 389.0
 offset_bottom = 42.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(1, 0.745, 0.4, 1)
@@ -46,3 +93,21 @@ text = "×2 Punkte · 10.0 s"
 layer = 2
 
 [node name="Shop" parent="ShopLayer" instance=ExtResource("shop")]
+
+[node name="AudioControls" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Mute" type="Button" parent="AudioControls"]
+offset_left = 402.0
+offset_top = 15.0
+offset_right = 448.0
+offset_bottom = 54.0
+toggle_mode = true
+theme_override_styles/normal = SubResource("sound_normal")
+theme_override_styles/hover = SubResource("sound_hover")
+theme_override_styles/pressed = SubResource("sound_hover")
+theme_override_styles/hover_pressed = SubResource("sound_hover")
+theme_override_styles/focus = SubResource("sound_focus")
+script = ExtResource("mute")
+
+[connection signal="mute_changed" from="AudioControls/Mute" to="Audio" method="set_muted"]

@@ -6,6 +6,7 @@ const SPRING_MAX_SPEED := 1450.0
 const MULTIPLIER_DURATION := 10.0
 
 const Flipper = preload("res://flipper.gd")
+const GameAudio = preload("res://audio.gd")
 const COSTS := [250, 450, 700]
 const PIN_MAX_LEVEL := 9
 const EXTRA_LIFE_COST := 500
@@ -54,6 +55,7 @@ var spring_held := false
 var spring_charge := 0.0
 var spring_touch := -1
 var multiplier_remaining := 0.0
+@onready var audio: GameAudio = $Audio
 @onready var return_sensor: CollisionShape2D = $Table/Launcher/ReturnArea/Collision
 @onready var menu: Control = $ShopLayer/Shop
 @onready var multiplier_label: Label = $HUD/Multiplier
@@ -67,6 +69,11 @@ func _ready() -> void:
 	pin_hits.resize(pin_levels.size())
 	flashes.resize(pin_levels.size())
 	flippers.assign([$Table/LeftFlipper, $Table/RightFlipper])
+	for flipper in flippers:
+		flipper.actuated.connect(on_flipper_actuated)
+	for pad in get_tree().get_nodes_in_group("powered_pad"):
+		if $Table.is_ancestor_of(pad):
+			pad.activated.connect(audio.play_cue.bind(GameAudio.Cue.RUBBER))
 	var zones := $Table.get_node_or_null("MultiplierZones")
 	if zones:
 		for zone in zones.get_children():
@@ -120,12 +127,15 @@ func start_round() -> void:
 	ball.collision_layer = 0
 	ball.collision_mask = 0
 	ball.body_entered.connect(on_ball_contact.bind(ball))
+	ball.wall_impact.connect(on_wall_impact)
 	add_child(ball)
 
 func set_spring_pressed(value: bool) -> void:
 	if phase != Phase.START or value == spring_held:
 		return
 	spring_held = value
+	if value:
+		audio.play_cue(GameAudio.Cue.SPRING)
 	if not value and spring_charge > 0.0:
 		# Spring energy grows with compression squared; launch speed grows linearly.
 		var speed := spring_charge / SPRING_PULL_TIME * SPRING_MAX_SPEED
@@ -136,6 +146,7 @@ func set_spring_pressed(value: bool) -> void:
 		ball.linear_velocity = -launcher_down() * speed
 		spring_charge = 0.0
 		phase = Phase.PLAY
+		audio.play_cue(GameAudio.Cue.LAUNCH, lerpf(0.89, 1.1, speed / SPRING_MAX_SPEED))
 
 func lose_ball() -> void:
 	if phase != Phase.PLAY:
@@ -143,6 +154,9 @@ func lose_ball() -> void:
 	update_high_score()
 	balls_left -= 1
 	phase = Phase.SHOP if balls_left > 0 else Phase.OVER
+	audio.play_cue(GameAudio.Cue.DRAIN)
+	if phase == Phase.OVER:
+		audio.play_cue(GameAudio.Cue.GAME_OVER)
 	multiplier_remaining = 0.0
 	flashes.fill(0.0)
 	ball.queue_free()
@@ -164,6 +178,7 @@ func buy_pin(index: int) -> bool:
 	credit -= prices[level]
 	pin_levels[index] += 1
 	update_pin_skin(index)
+	audio.play_cue(GameAudio.Cue.PURCHASE)
 	update_menu()
 	return true
 
@@ -175,6 +190,7 @@ func buy_upgrade(id: String) -> bool:
 		return false
 	credit -= COSTS[level]
 	upgrade_levels[id] += 1
+	audio.play_cue(GameAudio.Cue.PURCHASE)
 	update_menu()
 	return true
 
@@ -185,6 +201,7 @@ func on_multiplier_entered(body: Node2D) -> void:
 func on_ball_contact(body: Node, source: RigidBody2D) -> void:
 	if phase != Phase.PLAY or source != ball or not body.has_meta("pin"):
 		return
+	audio.play_cue(GameAudio.Cue.BUMPER, randf_range(0.92, 1.1))
 	var number: int = body.get_meta("pin")
 	var level := pin_levels[number] - 1
 	var points := pin_points(number, pin_levels[number])
@@ -232,7 +249,9 @@ func update_pin_skin(index: int) -> void:
 func _input(event: InputEvent) -> void:
 	if phase == Phase.START:
 		if event is InputEventKey and not event.echo and event.physical_keycode == KEY_SPACE:
-			set_spring_pressed(event.pressed)
+			if get_viewport().gui_get_focus_owner() != $AudioControls/Mute or spring_held:
+				set_spring_pressed(event.pressed)
+				get_viewport().set_input_as_handled()
 		elif event is InputEventScreenTouch:
 			if event.pressed and launcher_touch_contains(event.position) and spring_touch == -1:
 				spring_touch = event.index
@@ -260,6 +279,12 @@ func _input(event: InputEvent) -> void:
 			if side >= 0:
 				touches[event.index] = side
 		update_input()
+
+func on_flipper_actuated(raised: bool) -> void:
+	audio.play_cue(GameAudio.Cue.FLIP_UP if raised else GameAudio.Cue.FLIP_DOWN)
+
+func on_wall_impact(strength: float) -> void:
+	audio.play_cue(GameAudio.Cue.RAIL, lerpf(0.93, 1.12, strength), lerpf(-11.0, 0.0, strength))
 
 func update_input() -> void:
 	var window: float = 3.0 + upgrade_levels["precision"]
@@ -360,6 +385,7 @@ func buy_extra_life() -> bool:
 	credit -= EXTRA_LIFE_COST
 	extra_lives_bought += 1
 	balls_left += 1
+	audio.play_cue(GameAudio.Cue.EXTRA_LIFE)
 	update_menu()
 	return true
 

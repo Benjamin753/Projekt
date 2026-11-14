@@ -1,6 +1,8 @@
 @tool
 extends AnimatableBody2D
 
+signal actuated(raised: bool)
+
 const BASE_LENGTH := 57.0
 const REST_ANGLE := 0.27
 const RAISED_ANGLE := -0.47
@@ -41,6 +43,7 @@ func set_pressed(value: bool, decay_duration: float) -> void:
 	if pressed == value:
 		return
 	pressed = value
+	actuated.emit(value)
 	discharge_seconds = maxf(decay_duration, 0.1)
 	if value:
 		strike_power = charge_multiplier(held)
