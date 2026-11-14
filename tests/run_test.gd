@@ -80,9 +80,20 @@ func run() -> void:
 	game.high_score = 0
 	game.load_high_score()
 	check(game.high_score == 1234, "A saved record reloads correctly.")
+	var record_path: String = game.high_score_path
+	game.high_score_path = "res://.godot"
+	game.score = 1300
+	game.update_high_score()
+	check(game.high_score == 1300 and game.high_score_save_error != OK, "A write failure keeps the new record in memory.")
+	game.high_score_path = record_path
+	game.update_high_score()
+	check(game.high_score_save_error == OK, "The next update retries a failed save even without a higher score.")
+	game.high_score = 0
+	game.load_high_score()
+	check(game.high_score == 1300, "The retried record is persisted.")
 	game.new_run()
 	check(game.pin_levels[0] == 1 and game.balls_left == 3 and game.extra_lives_bought == 0, "A new run resets upgrades, lives and the extra-life limit.")
-	check(game.high_score == 1234, "A new run preserves the best score.")
+	check(game.high_score == 1300, "A new run preserves the best score.")
 	check(not game.buy_extra_life(), "Extra lives are unavailable while waiting to launch.")
 	launch(game)
 	var charge_flipper = game.flippers[0]

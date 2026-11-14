@@ -370,9 +370,9 @@ func load_high_score() -> void:
 			high_score = maxi(0, int(stored))
 
 func update_high_score() -> void:
-	if score <= high_score:
+	if score <= high_score and high_score_save_error == OK:
 		return
-	high_score = score
+	high_score = maxi(score, high_score)
 	var config := ConfigFile.new()
 	config.set_value("records", "high_score", high_score)
 	high_score_save_error = config.save(high_score_path)
