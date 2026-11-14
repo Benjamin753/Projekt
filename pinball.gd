@@ -396,5 +396,7 @@ func _process(_delta: float) -> void:
 
 func update_menu() -> void:
 	menu.refresh()
-	menu.show()
+	if not menu.visible:
+		menu.show()
+		menu.reveal()
 	$HUD.refresh()

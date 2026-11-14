@@ -12,6 +12,7 @@ var game: Node2D
 var category := 0
 var selected_pin := 0
 var selected_upgrade := "turbo"
+var reveal_tween: Tween
 @onready var category_buttons: Array = [%PinsTab, %BallTab, %FlippersTab]
 @onready var pin_buttons: Array = [%UpperLeft, %UpperRight, %UpperCenter, %LowerCenter]
 @onready var item_buttons: Array = [%Item0, %Item1]
@@ -33,6 +34,29 @@ func configure(owner_game: Node2D) -> void:
 	buy_button.pressed.connect(buy_selected)
 	extra_life_button.pressed.connect(buy_extra_life)
 	continue_button.pressed.connect(continue_run)
+	for button: Button in category_buttons + pin_buttons + item_buttons + [buy_button, extra_life_button, continue_button]:
+		button.button_down.connect(press_feedback.bind(button, true))
+		button.button_up.connect(press_feedback.bind(button, false))
+
+func reveal() -> void:
+	if reveal_tween:
+		reveal_tween.kill()
+	$Panel.modulate.a = 0.78
+	reveal_tween = create_tween()
+	reveal_tween.tween_property($Panel, "modulate:a", 1.0, 0.20).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+
+func press_feedback(button: Button, down: bool) -> void:
+	if down and Input.is_action_pressed("ui_accept"):
+		return
+	if button.has_meta("press_tween"):
+		var previous: Tween = button.get_meta("press_tween")
+		previous.kill()
+	button.pivot_offset = button.size * 0.5
+	var tween := button.create_tween()
+	button.set_meta("press_tween", tween)
+	var target := Vector2(0.98, 0.98) if down else Vector2.ONE
+	tween.tween_property(button, "scale", target, 0.10 if down else 0.15).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.finished.connect(func(): button.remove_meta("press_tween"))
 
 func select_category(index: int) -> void:
 	category = index

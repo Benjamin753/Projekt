@@ -36,6 +36,13 @@ func run() -> void:
 		DirAccess.remove_absolute(game.high_score_path)
 	root.add_child(game)
 	check(game.high_score == 0, "A missing high-score file starts at zero.")
+	var glass: Control = game.get_node("Table/GlassReflection")
+	check(glass.mouse_filter == Control.MOUSE_FILTER_IGNORE, "The glass reflection leaves gameplay input available.")
+	var skin_sprite: Sprite2D = game.ball.get_node("Visual/Sprite")
+	var collider: CollisionShape2D = game.ball.get_node("Collision")
+	var drawn_size := skin_sprite.texture.get_size() * skin_sprite.scale
+	check(drawn_size.is_equal_approx(Vector2.ONE * collider.shape.radius * 2.0), "The steel-ball skin matches its collision diameter.")
+	check(skin_sprite.texture.resource_path == "res://assets/ball/steel_ball.png", "The ball uses the supplied skin.")
 	check(is_equal_approx(game.charge_multiplier(0.5), 1.25), "Half a second gives 1.25x strength.")
 	check(is_equal_approx(game.charge_multiplier(2.0), 2.0), "Two seconds gives 2x strength.")
 	check(is_equal_approx(game.charge_multiplier(5.0), 2.0), "Charge cannot exceed 2x strength.")
@@ -152,6 +159,7 @@ func run() -> void:
 	game.new_run()
 	launch(game)
 	await frames(150)
+	check(is_instance_valid(game.ball) and not is_zero_approx(game.ball.get_node("Visual/Sprite").rotation), "A rolling ball turns its skin.")
 	check(game.balls_left == 3 and is_instance_valid(game.ball) and game.ball.global_position.x < game.get_node("Table/Launcher/Spawn").global_position.x - 20, "The launcher sends the ball into play.")
 	if is_instance_valid(game.ball):
 		var drain: Area2D = game.get_node("Table/Drain")
@@ -185,5 +193,5 @@ func run() -> void:
 	await process_frame
 	DirAccess.remove_absolute("res://.godot/test_run_highscore.cfg")
 	if failures == 0:
-		print("Steel Ballz Run lifecycle, pin tiers, pad direction, persistence and input checks passed")
+		print("Steel Ballz Run lifecycle, pin tiers, pad direction, ball skin, persistence and input checks passed")
 	quit(1 if failures else 0)

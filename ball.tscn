@@ -1,7 +1,20 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://ball.gd" id="script"]
-[ext_resource type="Texture2D" path="res://assets/pinball/ball_4.png" id="texture"]
+[ext_resource type="Texture2D" path="res://assets/ball/steel_ball.png" id="texture"]
+
+[ext_resource type="Shader" path="res://assets/ball/steel_ball.gdshader" id="skin"]
+[ext_resource type="Shader" path="res://assets/ball/ball_light.gdshader" id="light"]
+
+[sub_resource type="ShaderMaterial" id="skin_material"]
+shader = ExtResource("skin")
+
+[sub_resource type="ShaderMaterial" id="shadow_material"]
+shader = ExtResource("light")
+shader_parameter/shadow = true
+
+[sub_resource type="ShaderMaterial" id="reflection_material"]
+shader = ExtResource("light")
 
 [sub_resource type="CircleShape2D" id="shape"]
 radius = 10.0
@@ -29,6 +42,19 @@ physics_material_override = SubResource("material")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("shape")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Visual" type="Node2D" parent="."]
+top_level = true
+z_index = 3
+texture_filter = 4
+
+[node name="Shadow" type="ColorRect" parent="Visual"]
+material = SubResource("shadow_material")
+mouse_filter = 2
+
+[node name="Sprite" type="Sprite2D" parent="Visual"]
+material = SubResource("skin_material")
 texture = ExtResource("texture")
-scale = Vector2(0.263158, 0.263158)
+
+[node name="Reflection" type="ColorRect" parent="Visual"]
+material = SubResource("reflection_material")
+mouse_filter = 2

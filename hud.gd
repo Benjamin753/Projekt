@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-const IVORY := Color("#f0eee2")
-const MUTED := Color("#aebbd0")
-const CYAN := Color("#71e3dd")
-const GOLD := Color("#ffca7d")
+const IVORY := Color("#fbf8f1")
+const MUTED := Color("#d0c7bd")
+const SILVER := Color("#f7f4ed")
+const GOLD := Color("#efd6ab")
 @export var font: Font
 @export var strong_font: Font
 var values: Array[Label] = []
@@ -17,24 +17,27 @@ func _ready() -> void:
 	panel.size = Vector2(448, 96)
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var surface := StyleBoxFlat.new()
-	surface.bg_color = Color("#111a2b")
-	surface.border_color = Color("#384860")
+	surface.bg_color = Color("#34302ddf")
+	surface.border_color = Color("#cfc2b74d")
 	surface.set_border_width_all(1)
-	surface.set_corner_radius_all(12)
+	surface.set_corner_radius_all(18)
+	surface.shadow_color = Color("#100c0950")
+	surface.shadow_size = 5
+	surface.shadow_offset = Vector2(0, 3)
 	panel.add_theme_stylebox_override("panel", surface)
 	add_child(panel)
-	var title := add_label("STEEL BALLZ RUN", Vector2(30, 19), Vector2(205, 24), 17, IVORY)
+	var title := add_label("STEEL BALLZ RUN", Vector2(32, 21), Vector2(205, 24), 17, IVORY)
 	title.add_theme_font_override("font", strong_font)
 	var launch_text := "Feder halten und loslassen" if DisplayServer.is_touchscreen_available() else "Leertaste halten und loslassen"
 	launch_hint = add_label(launch_text, Vector2(111, 796), Vector2(230, 21), 12, MUTED)
 	launch_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var headings := ["Aktueller Run", "Highscore", "Guthaben", "Kugeln"]
-	var positions := [30.0, 153.0, 276.0, 399.0]
-	var widths := [113.0, 113.0, 113.0, 49.0]
-	var colors := [CYAN, IVORY, GOLD, IVORY]
+	var positions := [32.0, 151.0, 270.0, 389.0]
+	var widths := [108.0, 108.0, 108.0, 59.0]
+	var colors := [SILVER, IVORY, GOLD, IVORY]
 	for index in headings.size():
-		add_label(headings[index], Vector2(positions[index], 50), Vector2(widths[index], 17), 11, MUTED)
-		var value := add_label("0", Vector2(positions[index], 66), Vector2(widths[index], 30), 24, colors[index])
+		add_label(headings[index], Vector2(positions[index], 54), Vector2(widths[index], 17), 11, MUTED)
+		var value := add_label("0", Vector2(positions[index], 69), Vector2(widths[index], 30), 24, colors[index])
 		value.add_theme_font_override("font", strong_font)
 		values.append(value)
 	refresh()

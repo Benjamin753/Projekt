@@ -1,6 +1,6 @@
 [gd_resource type="PhysicsMaterial" format=3]
 
 [resource]
-resource_name = "Passive rubber (rail restitution)"
+resource_name = "Passive rubber (active kick applied by script)"
 friction = 0.12
 bounce = 0.45

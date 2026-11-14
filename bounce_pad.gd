@@ -31,5 +31,5 @@ func _process(delta: float) -> void:
 	if flash <= 0.0:
 		return
 	flash = maxf(0.0, flash - delta * 5.5)
-	$Face.self_modulate = Color.WHITE.lerp(Color(1.75, 1.55, 1.25), flash)
-	$Glow.self_modulate.a = lerpf(1.0, 2.8, flash)
+	$Face.self_modulate = Color.WHITE.lerp(Color(1.34, 1.28, 1.36), flash)
+	$Glow.self_modulate.a = lerpf(1.0, 2.2, flash)

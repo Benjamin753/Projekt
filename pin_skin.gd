@@ -25,7 +25,9 @@ func set_skin(skin: AtlasTexture, points: int, skin_accent: Color) -> void:
 		value_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		value_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		value_label.add_theme_color_override("font_color", Color("#f3f7ff"))
+		value_label.add_theme_color_override("font_color", Color("#fffbef"))
+		value_label.add_theme_color_override("font_outline_color", Color("#211b19"))
+		value_label.add_theme_constant_override("outline_size", 2)
 		add_child(value_label)
 		value_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		resized.connect(update_font_size)
