@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=480
 window/size/viewport_height=820
-window/size/window_width_override=450
-window/size/window_height_override=769
+window/size/window_width_override=576
+window/size/window_height_override=984
 window/handheld/orientation=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep"
@@ -33,3 +33,5 @@ common/physics_ticks_per_second=120
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+environment/defaults/default_clear_color=Color(0.025, 0.04, 0.065, 1)

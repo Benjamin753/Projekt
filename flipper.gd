@@ -1,6 +1,6 @@
 extends AnimatableBody2D
 
-const BASE_LENGTH := 111.0
+const BASE_LENGTH := 57.0
 const REST_ANGLE := 0.27
 const RAISED_ANGLE := -0.47
 
@@ -14,6 +14,7 @@ var pressed := false
 var struck := false
 var length := BASE_LENGTH
 var swing_velocity := 0.0
+var base_rotation := 0.0
 @onready var collider: CollisionShape2D = $Collision
 @onready var sprite: Sprite2D = $Sprite
 
@@ -21,18 +22,19 @@ static func charge_multiplier(seconds: float) -> float:
 	return 1.0 + clampf(seconds / 2.0, 0.0, 1.0)
 
 func _ready() -> void:
+	base_rotation = rotation
 	sync_to_physics = false
 	sprite.flip_h = side > 0.0
 	set_length_level(0)
-	rotation = REST_ANGLE * side
+	rotation = base_rotation + REST_ANGLE * side
 
 func set_length_level(level: int) -> void:
 	length = BASE_LENGTH * (1.0 + 0.05 * level)
 	sprite.position.x = side * length / 2.0
-	sprite.scale = Vector2((length + 28.0) / 328.0, 28.0 / 90.0)
+	sprite.scale = Vector2((length + 20.0) / 328.0, 20.0 / 90.0)
 	var shape := collider.shape as CapsuleShape2D
-	shape.radius = 10.0
-	shape.height = length + 20.0
+	shape.radius = 8.0
+	shape.height = length + 16.0
 	collider.rotation = PI / 2.0
 	collider.position.x = side * length / 2.0
 
@@ -53,7 +55,7 @@ func reset() -> void:
 	strike_time = 0.0
 	swing_velocity = 0.0
 	strike_power = 1.0
-	rotation = REST_ANGLE * side
+	rotation = base_rotation + REST_ANGLE * side
 
 func _physics_process(delta: float) -> void:
 	animation_time += delta
@@ -64,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	strike_time = maxf(strike_time - delta, 0.0)
 	var angle := RAISED_ANGLE if pressed else REST_ANGLE
 	var previous_angle := rotation
-	rotation = move_toward(rotation, angle * side, delta * (13.0 if pressed else 23.0))
+	rotation = move_toward(rotation, base_rotation + angle * side, delta * (13.0 if pressed else 23.0))
 	swing_velocity = (rotation - previous_angle) / maxf(delta, 0.00001)
 	queue_redraw()
 
@@ -72,7 +74,7 @@ func strike_boost(world_contact: Vector2, normal: Vector2) -> Vector2:
 	if struck or not pressed or strike_time <= 0.0 or swing_velocity * side >= -0.001:
 		return Vector2.ZERO
 	var contact := to_local(world_contact)
-	if normal.dot(Vector2.UP.rotated(rotation)) < 0.3 or contact.x * side < 0.0 or contact.x * side > length + 10.0:
+	if normal.dot(Vector2.UP.rotated(global_rotation)) < 0.3 or contact.x * side < 0.0 or contact.x * side > length + 10.0:
 		return Vector2.ZERO
 	struck = true
 	held = 0.0
@@ -89,8 +91,8 @@ func _draw() -> void:
 	if charge > 0.0:
 		var glow := Color("#ffbe66")
 		glow.a = charge * (0.12 + 0.1 * pulse)
-		draw_line(Vector2.ZERO, tip, glow, 31.0 + 6.0 * pulse * charge, true)
-	sprite.modulate = Color("#ee82b9").lerp(Color("#ffbe66"), charge)
+		draw_line(Vector2.ZERO, tip, glow, 23.0 + 6.0 * pulse * charge, true)
+	sprite.modulate = Color("#ff5964").lerp(Color("#ffbe66"), charge)
 	if charge > 0.0:
 		for index in 3:
 			var progress := fposmod(animation_time * 0.55 + index / 3.0, 1.0)

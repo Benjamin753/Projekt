@@ -19,6 +19,7 @@ var selected_upgrade := "turbo"
 @onready var detail_title: Label = %DetailTitle
 @onready var next_effect: Label = %NextEffect
 @onready var buy_button: Button = %Buy
+@onready var extra_life_button: Button = %ExtraLife
 @onready var continue_button: Button = %Continue
 
 func configure(owner_game: Node2D) -> void:
@@ -30,6 +31,7 @@ func configure(owner_game: Node2D) -> void:
 	for index in item_buttons.size():
 		item_buttons[index].pressed.connect(select_item.bind(index))
 	buy_button.pressed.connect(buy_selected)
+	extra_life_button.pressed.connect(buy_extra_life)
 	continue_button.pressed.connect(continue_run)
 
 func select_category(index: int) -> void:
@@ -51,33 +53,40 @@ func select_item(index: int) -> void:
 	refresh()
 
 func pin_effect(index: int, level: int) -> String:
-	var effect := "%s Punkte pro Treffer" % game.pin_points(index, level)
-	if not game.is_golden(index) and level > 1:
-		effect += " · stärkerer Rückstoß"
-	return effect
+	return "%s Punkte pro Treffer" % game.pin_points(index, level)
 
 func refresh() -> void:
 	var over: bool = game.phase == game.Phase.OVER
-	%Title.text = "RUN BEENDET" if over else "UPGRADE-SHOP"
-	%Wallet.text = "Score  %s" % game.score if over else "Guthaben  %s" % game.credit
-	%Subtitle.text = "Drei Kugeln gespielt. Bereit für den nächsten Run?" if over else "%s Kugeln übrig · %s Ausrüstungsangebote bei diesem Besuch" % [game.balls_left, game.offers.size()]
+	%Title.text = "Run beendet" if over else "Mach mehr aus deinem Run."
+	%Eyebrow.text = "STEEL BALLZ RUN / ERGEBNIS" if over else "STEEL BALLZ RUN / WERKSTATT"
+	%Wallet.text = "Guthaben  %s" % game.credit
+	%RunScore.text = "Aktueller Run  %s" % game.score
+	%HighScore.text = "Highscore  %s" % game.high_score
+	%Subtitle.text = "Jeder Treffer zählt. Auf zum nächsten Versuch." if over else "%s Kugeln übrig · %s Ausrüstungsangebote" % [game.balls_left, game.offers.size()]
 	%Tabs.visible = not over
 	shop_content.visible = not over
+	buy_button.visible = not over
+	%LifeCard.visible = not over
 	%RunSummary.visible = over
-	%RunSummary.text = "Dein Run\n\n%s Punkte\n\nInvestiert: %s\nRestguthaben: %s" % [game.score, game.score - game.credit, game.credit]
-	continue_button.text = "Neuer Run" if over else "Zur Feder · nächste Kugel"
-	%Footnote.text = "Ein neuer Run beginnt mit Level 1 und ohne Upgrades." if over else "Upgrades gelten für diesen Run.\nAbschuss: Leertaste oder Feder halten und loslassen."
+	%RunSummary.text = "%s\nPUNKTE IN DIESEM RUN\n\nHighscore  %s\n\nInvestiert  %s · Übrig  %s" % [game.score, game.high_score, game.score - game.credit, game.credit]
+	continue_button.text = "Neuen Run starten  →" if over else "Weiter zur nächsten Kugel  →"
+	%Footnote.text = "Neuer Run: Pins auf Level 1, Upgrades zurückgesetzt.\nDein Highscore bleibt erhalten." if over else "Upgrades gelten für diesen Run."
 	if over:
 		%Feedback.text = ""
 		return
+	%LifeStatus.text = "%s / %s gekauft · pro Run" % [game.extra_lives_bought, game.MAX_EXTRA_LIVES]
+	extra_life_button.disabled = game.extra_lives_bought >= game.MAX_EXTRA_LIVES or game.credit < game.EXTRA_LIFE_COST
+	extra_life_button.text = "Limit erreicht" if game.extra_lives_bought >= game.MAX_EXTRA_LIVES else "+1 Kugel · %s" % game.EXTRA_LIFE_COST
+	extra_life_button.tooltip_text = "Noch %s Guthaben nötig" % maxi(0, game.EXTRA_LIFE_COST - game.credit) if game.credit < game.EXTRA_LIFE_COST else "Eine zusätzliche Kugel für diesen Run"
 	for index in category_buttons.size():
 		category_buttons[index].set_pressed_no_signal(category == index)
 	%PinPicker.visible = category == 0
 	%ItemPicker.visible = category != 0
 	for index in pin_buttons.size():
-		pin_buttons[index].text = "L%s" % game.pin_levels[index]
-		pin_buttons[index].get_node("Skin").set_skin(game.pin_texture(index, game.pin_levels[index]))
-		pin_buttons[index].tooltip_text = game.PIN_NAMES[index]
+		var pin_level: int = game.pin_levels[index]
+		pin_buttons[index].text = "L%s" % pin_level
+		pin_buttons[index].get_node("Skin").set_skin(game.pin_texture(index, pin_level), game.pin_points(index, pin_level))
+		pin_buttons[index].tooltip_text = "%s · %s Punkte" % [game.PIN_NAMES[index], game.pin_points(index, pin_level)]
 		pin_buttons[index].set_pressed_no_signal(selected_pin == index)
 	var level: int
 	var max_level: int
@@ -89,47 +98,53 @@ func refresh() -> void:
 		level = game.pin_levels[selected_pin] - 1
 		prices = game.pin_prices(selected_pin)
 		max_level = prices.size()
-		%CurrentSkin.set_skin(game.pin_texture(selected_pin, level + 1))
+		%CurrentSkin.set_skin(game.pin_texture(selected_pin, level + 1), game.pin_points(selected_pin, level + 1))
 		%NextSkin.visible = level < max_level
 		if level < max_level:
-			%NextSkin.set_skin(game.pin_texture(selected_pin, level + 2))
-		detail_title.text = "%s · %s" % [game.PIN_NAMES[selected_pin], "Golden Pin" if game.is_golden(selected_pin) else "Pin"]
-		%Level.text = "Level %s / 3 · nur dieser Pin" % (level + 1)
-		%CurrentEffect.text = "Jetzt: " + pin_effect(selected_pin, level + 1)
-		next_effect.text = "Danach: " + pin_effect(selected_pin, level + 2) if level < max_level else "Alle Stufen dieses Pins freigeschaltet."
+			%NextSkin.set_skin(game.pin_texture(selected_pin, level + 2), game.pin_points(selected_pin, level + 2))
+		detail_title.text = "%s · %s" % [game.PIN_NAMES[selected_pin], "Gold-Pin" if game.is_golden(selected_pin) else "Pin"]
+		%Level.text = "LEVEL %s / %s   ·   EINZELNES UPGRADE" % [level + 1, game.PIN_MAX_LEVEL]
+		%CurrentEffect.text = "JETZT\n" + pin_effect(selected_pin, level + 1)
+		next_effect.text = "NÄCHSTES LEVEL\n" + pin_effect(selected_pin, level + 2) if level < max_level else "VOLL AUSGEBAUT\nAlle neun Level freigeschaltet."
 	else:
 		for index in item_buttons.size():
 			var id: String = CATEGORIES[category - 1][index]
 			var item_level: int = game.upgrade_levels[id]
-			var offer_text := "Im Angebot" if id in game.offers else "Nicht im Angebot"
+			var offer_text := "Verfügbar" if id in game.offers else "Heute nicht verfügbar"
 			if item_level == game.COSTS.size():
-				offer_text = "Maximum erreicht"
+				offer_text = "Voll ausgebaut"
 			item_buttons[index].text = "%s\nStufe %s / 3\n%s" % [game.UPGRADES[id][0], item_level, offer_text]
 			item_buttons[index].set_pressed_no_signal(selected_upgrade == id)
 		level = game.upgrade_levels[selected_upgrade]
 		max_level = game.COSTS.size()
 		available = selected_upgrade in game.offers
 		detail_title.text = game.UPGRADES[selected_upgrade][0]
-		%Level.text = "Stufe %s / 3" % level
-		%CurrentEffect.text = "Jetzt: " + (BASE_EFFECTS[selected_upgrade] if level == 0 else game.UPGRADES[selected_upgrade][level])
-		next_effect.text = "Danach: " + game.UPGRADES[selected_upgrade][level + 1] if level < max_level else "Alle Stufen dieses Upgrades freigeschaltet."
+		%Level.text = "STUFE %s / 3   ·   AUSRÜSTUNG" % level
+		%CurrentEffect.text = "JETZT\n" + (BASE_EFFECTS[selected_upgrade] if level == 0 else game.UPGRADES[selected_upgrade][level])
+		next_effect.text = "NÄCHSTE STUFE\n" + game.UPGRADES[selected_upgrade][level + 1] if level < max_level else "VOLL AUSGEBAUT\nAlle Stufen freigeschaltet."
 		if selected_upgrade == "save":
 			next_effect.text += "\nZiele: oben rechts + unten Mitte. Einmal pro Kugel."
 	buy_button.disabled = true
 	if level == max_level:
 		buy_button.text = "Maximum erreicht"
 	elif not available:
-		buy_button.text = "Bei diesem Besuch nicht im Angebot"
+		buy_button.text = "Bei diesem Besuch nicht verfügbar"
 	elif game.credit < prices[level]:
-		buy_button.text = "Preis %s · noch %s Guthaben nötig" % [prices[level], prices[level] - game.credit]
+		buy_button.text = "%s Guthaben · noch %s nötig" % [prices[level], prices[level] - game.credit]
 	else:
-		buy_button.text = "Upgrade kaufen · %s" % prices[level]
+		buy_button.text = "Upgrade kaufen  ·  %s" % prices[level]
 		buy_button.disabled = false
 
 func buy_selected() -> void:
 	var purchased: bool = game.buy_pin(selected_pin) if category == 0 else game.buy_upgrade(selected_upgrade)
 	if purchased:
-		%Feedback.text = "Gekauft! %s verbessert." % (game.PIN_NAMES[selected_pin] if category == 0 else game.UPGRADES[selected_upgrade][0])
+		refresh()
+		%Feedback.text = "✓ %s verbessert." % (game.PIN_NAMES[selected_pin] if category == 0 else game.UPGRADES[selected_upgrade][0])
+
+func buy_extra_life() -> void:
+	if game.buy_extra_life():
+		refresh()
+		%Feedback.text = "✓ Zusatzkugel gekauft. %s Kugeln übrig." % game.balls_left
 
 func continue_run() -> void:
 	%Feedback.text = ""
@@ -139,3 +154,4 @@ func continue_run() -> void:
 		game.new_run()
 	elif game.phase == game.Phase.SHOP:
 		game.start_round()
+

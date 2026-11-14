@@ -18,7 +18,9 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			var point := state.get_contact_local_position(index)
 			state.linear_velocity += body.strike_boost(point, normal)
 		elif body.has_method("bounce_velocity") and not previous_contacts.has(id) and not contacts.has(id):
-			state.linear_velocity = body.bounce_velocity(state.linear_velocity, normal)
+			# The pad owns its front/back rule; passive contacts never add energy.
+			if body.accepts_normal(normal):
+				state.linear_velocity = body.bounce_velocity(state.linear_velocity, normal)
 		contacts[id] = true
 	previous_contacts = contacts
 	state.linear_velocity = state.linear_velocity.move_toward(Vector2.ZERO, rolling_resistance * state.step)

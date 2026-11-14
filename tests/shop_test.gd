@@ -39,6 +39,7 @@ func touch(button: Button) -> void:
 
 func run() -> void:
 	var game = load("res://pinball.tscn").instantiate()
+	game.high_score_path = "res://.godot/test_shop.cfg"
 	root.add_child(game)
 	check(game.menu.has_method("select_pin"), "The shop must provide individual pin selection and a purchase preview.")
 	if failures:
@@ -67,11 +68,16 @@ func run() -> void:
 	check(shop.buy_button.text.contains("500"), "The next price refreshes immediately.")
 	await click(shop.buy_button)
 	await click(shop.buy_button)
-	check(game.pin_levels[1] == 3 and game.credit == 200 and shop.buy_button.disabled, "The final pin level is capped and cannot be purchased again.")
+	check(game.pin_levels[1] == 3 and game.credit == 200 and shop.buy_button.disabled, "The next pin upgrade is disabled when credit is insufficient.")
 	await click(shop.pin_buttons[0])
-	check(shop.buy_button.disabled and shop.buy_button.text.contains("200"), "Insufficient credit shows the missing amount and disables buying.")
+	check(shop.buy_button.disabled and shop.buy_button.text.contains("100"), "Insufficient credit shows the missing amount and disables buying.")
 	check(not game.buy_pin(-1) and not game.buy_pin(20), "Invalid pin selections are rejected.")
 	check(game.offers == original_offers, "Buying and selecting do not reroll the offers.")
+	game.credit = 20000
+	await click(shop.pin_buttons[2])
+	for upgrade in 8:
+		await click(shop.buy_button)
+	check(game.pin_levels[2] == 9 and shop.buy_button.disabled, "The golden pin reaches level nine and stops there.")
 	game.credit = 5000
 	game.offers = ["turbo", "precision", "length"]
 	game.update_menu()
@@ -94,19 +100,22 @@ func run() -> void:
 	await click(shop.item_buttons[1])
 	await click(shop.buy_button)
 	check(game.upgrade_levels["length"] == 1, "Flipper length is separately purchasable.")
+	await click(shop.extra_life_button)
+	check(game.balls_left == 3 and game.extra_lives_bought == 1, "The shop extra-life button buys one life.")
 	await click(shop.continue_button)
 	check(game.phase == game.Phase.START and game.ball.freeze and not shop.visible, "Continue waits at the spring without auto-launching.")
-	check(is_equal_approx(game.flippers[0].length, 111.0 * 1.05), "Purchased flipper length applies to the next ball.")
+	check(is_equal_approx(game.flippers[0].length, 57.0 * 1.05), "Purchased flipper length applies to the next ball.")
 	check(not game.buy_pin(0) and not game.buy_upgrade("turbo"), "Purchases outside the shop are blocked.")
-	for loss in 2:
+	for loss in 3:
 		game.set_spring_pressed(true)
 		game._physics_process(1.7)
 		game.set_spring_pressed(false)
 		game.lose_ball()
-		if loss == 0:
+		if loss < 2:
 			game.start_round()
 	await settle()
 	check(game.phase == game.Phase.OVER and not shop.shop_content.visible, "Game over shows the run summary instead of purchases.")
+	check(not game.buy_extra_life(), "Extra lives cannot be bought after game over.")
 	await click(shop.continue_button)
 	check(game.phase == game.Phase.START and game.credit == 0 and game.pin_levels.all(func(level): return level == 1), "A new run resets credit and every pin.")
 	check(game.upgrade_levels.values().all(func(level): return level == 0), "A new run resets equipment.")
@@ -120,3 +129,6 @@ func run() -> void:
 	if failures == 0:
 		print("Shop selection, purchases, and round flow checks passed")
 	quit(1 if failures else 0)
+
+
+

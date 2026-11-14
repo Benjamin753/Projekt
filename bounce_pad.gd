@@ -4,9 +4,22 @@ signal activated
 
 @export var kick_speed := 260.0
 @export var maximum_outward_speed := 1000.0
+@export var all_sides := false
+@export var active_normal := Vector2.UP
+@export_range(0.0, 1.0) var front_alignment := 0.85
 var flash := 0.0
 
+func accepts_normal(normal: Vector2) -> bool:
+	if all_sides:
+		return true
+	# Normals transform by the inverse transpose, including rotated/scaled parents.
+	var inverse := global_transform.affine_inverse()
+	var front := Vector2(inverse.x.dot(active_normal), inverse.y.dot(active_normal)).normalized()
+	return normal.normalized().dot(front) >= front_alignment
+
 func bounce_velocity(velocity: Vector2, normal: Vector2) -> Vector2:
+	if not accepts_normal(normal):
+		return velocity
 	var outward := velocity.dot(normal)
 	var boost := minf(kick_speed, maxf(0.0, maximum_outward_speed - outward))
 	flash = 1.0
